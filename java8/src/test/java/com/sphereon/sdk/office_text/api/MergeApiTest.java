@@ -212,7 +212,7 @@ public class MergeApiTest {
 
         TemplateContextResponse response = api.getTemplateContext(templateId);
         Assert.assertNotNull(response);
-        Assert.assertEquals(TemplateContextResponse.StatusEnum.UPDATED, response.getStatus());
+        Assert.assertEquals(TemplateContextResponse.StatusEnum.PROCESSING, response.getStatus());
         TemplateContext templateContext = response.getContext();
         Assert.assertNotNull(templateContext);
         OwnerInfo ownerInfo = templateContext.getOwnerInfo();
@@ -228,7 +228,22 @@ public class MergeApiTest {
         Assert.assertEquals(1, templateFiles.size());
         Set<String> keys = templateFiles.keySet();
         String key = keys.iterator().next();
-        Assert.assertEquals(templateFile.getAbsolutePath(), templateFiles.get(key));
+        String expectedFileName = templateFile.getName();
+        Assert.assertTrue(templateFiles.get(key).contains(expectedFileName));
+    }
+
+    @Test
+    public void _06_deleteAllJobsTest() throws ApiException {
+        List<String> statusses = new ArrayList<>();
+
+        for (MergeJobResponse.StatusEnum statusEnum : MergeJobResponse.StatusEnum.values()) {
+            statusses.add(statusEnum.name());
+        }
+
+        List<MergeJobResponse> response = api.getJobs(statusses);
+        for (MergeJobResponse mergeJobResponse : response) {
+            api.deleteJob(mergeJobResponse.getJobId());
+        }
     }
 
     /**
@@ -239,7 +254,7 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _06_submitJobTest() throws ApiException {
+    public void _07_submitJobTest() throws ApiException {
         MergeSettings providedMergeSettings = new MergeSettings();
         providedMergeSettings.setMergeResult(MergeSettings.MergeResultEnum.SINGLE_FILE);
         providedMergeSettings.setTemplateId(templateId);
@@ -251,7 +266,7 @@ public class MergeApiTest {
         providedMergeSettings.getHeaderDataSetIds().add(headerId);
         OutputSettings outputSettings = new OutputSettings();
         outputSettings.setOutputFormat(OutputSettings.OutputFormatEnum.DOCX);
-        outputSettings.setDeliveryFormat(OutputSettings.DeliveryFormatEnum.ZIP);
+        outputSettings.setDeliveryFormat(OutputSettings.DeliveryFormatEnum.PLAIN);
         providedMergeSettings.setOutputSettings(outputSettings);
         MergeJobResponse response = api.submitJob(providedMergeSettings);
         Assert.assertNotNull(response);
@@ -283,7 +298,7 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _07_getJobTest() throws ApiException {
+    public void _08_getJobTest() throws ApiException {
         MergeJobResponse response = api.getJob(jobId);
         Assert.assertNotNull(response);
         Assert.assertEquals(jobId, response.getJobId());
@@ -297,9 +312,13 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _08_getJobsTest() throws ApiException {
+    public void _09_getJobsTest() throws ApiException {
         List<String> statusses = new ArrayList<>();
-        statusses.add("CREATED");
+
+        for (MergeJobResponse.StatusEnum statusEnum : MergeJobResponse.StatusEnum.values()) {
+            statusses.add(statusEnum.name());
+        }
+
         List<MergeJobResponse> response = api.getJobs(statusses);
         Assert.assertNotNull(response);
         Assert.assertEquals(1, response.size());
@@ -315,15 +334,15 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _09_getResultStreamByIdTest() throws ApiException, InterruptedException {
+    public void _10_getResultStreamByIdTest() throws ApiException, InterruptedException {
         MergeJobResponse mergeJobResponse;
-        int countDown = 500;
+        int countDown = 20;
         do {
             mergeJobResponse = api.getJob(jobId);
             Thread.sleep(1000);
             countDown--;
         }
-        while (mergeJobResponse != null && !MergeJob.StatusEnum.DONE.equals(mergeJobResponse.getStatus()) && countDown > 0);
+        while (mergeJobResponse != null && !MergeJobResponse.StatusEnum.DONE.equals(mergeJobResponse.getStatus()) && countDown > 0);
 
 
         MergeJob job = mergeJobResponse.getJob();
@@ -337,7 +356,7 @@ public class MergeApiTest {
         outputSettings.setOutputFormat(OutputSettings.OutputFormatEnum.DOCX);
         byte[] data = api.getResultStreamById(jobId, streamId, outputSettings);
 
-        assertValidMediaType(data, MS_WORD_DOCX);
+        assertValidMediaType(data, MediaType.APPLICATION_ZIP.toString()); // DOCX document is actually a zip file
     }
 
     /**
@@ -348,15 +367,15 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _10_getResultStreamsAsContainerTest() throws ApiException, InterruptedException {
+    public void _11_getResultStreamsAsContainerTest() throws ApiException, InterruptedException {
         MergeJobResponse mergeJobResponse;
-        int countDown = 500;
+        int countDown = 20;
         do {
             mergeJobResponse = api.getJob(jobId);
             Thread.sleep(1000);
             countDown--;
         }
-        while (mergeJobResponse != null && !MergeJob.StatusEnum.DONE.equals(mergeJobResponse.getStatus()) && countDown > 0);
+        while (mergeJobResponse != null && !MergeJobResponse.StatusEnum.DONE.equals(mergeJobResponse.getStatus()) && countDown > 0);
 
 
         MergeJob job = mergeJobResponse.getJob();
@@ -378,11 +397,18 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _11_deleteDataSetTest() throws ApiException {
+    public void _12_deleteDataSetTest() throws ApiException {
         DataSetResponse response = api.deleteDataSet(dataSetId);
         Assert.assertNotNull(response);
         Assert.assertEquals(DataSetResponse.StatusEnum.DELETED, response.getStatus());
         Assert.assertEquals(dataSetId, response.getId());
+
+        response = api.deleteDataSet(headerId);
+        Assert.assertNotNull(response);
+        Assert.assertEquals(DataSetResponse.StatusEnum.DELETED, response.getStatus());
+        Assert.assertEquals(headerId, response.getId());
+
+
     }
 
 
@@ -394,11 +420,11 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _12_deleteTemplateContextTest() throws ApiException {
+    public void _13_deleteTemplateContextTest() throws ApiException {
         TemplateContextResponse response = api.deleteTemplateContext(templateId);
         Assert.assertNotNull(response);
         Assert.assertEquals(TemplateContextResponse.StatusEnum.DELETED, response.getStatus());
-        Assert.assertEquals(dataSetId, response.getId());
+        Assert.assertEquals(templateId, response.getContext().getTemplateId());
     }
 
     /**
@@ -409,11 +435,11 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _13_deleteJobTest() throws ApiException {
+    public void _14_deleteJobTest() throws ApiException {
         MergeJobResponse response = api.deleteJob(jobId);
         Assert.assertNotNull(response);
         Assert.assertEquals(MergeJobResponse.StatusEnum.DELETED, response.getStatus());
-        Assert.assertEquals(dataSetId, response.getJobId());
+        Assert.assertEquals(jobId, response.getJobId());
     }
 
     /**
@@ -424,7 +450,7 @@ public class MergeApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void _14_getJobsTest() throws ApiException {
+    public void _15_getJobsTest() throws ApiException {
         List<String> statusses = new ArrayList<>();
         statusses.add("DONE");
         List<MergeJobResponse> response = api.getJobs(statusses);

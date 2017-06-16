@@ -9,6 +9,7 @@
 
 
     <properties>
+        <swagger-file>swagger.sdk.json</swagger-file>
         <swagger-annotations-version>1.5.9</swagger-annotations-version>
         <jackson-version>2.4.2</jackson-version>
         <swagger-core-version>1.5.9</swagger-core-version>
@@ -57,7 +58,7 @@
                                 </goals>
                                 <configuration>
                                     <!-- specify the swagger yaml -->
-                                    <inputSpec>swagger.json</inputSpec>
+                                    <inputSpec>${swagger-file}</inputSpec>
 
 
                                     <!-- target to generate -->
@@ -108,7 +109,7 @@
                                 </goals>
                                 <configuration>
                                     <!-- specify the swagger yaml -->
-                                    <inputSpec>swagger.json</inputSpec>
+                                    <inputSpec>${swagger-file}</inputSpec>
 
                                     <!-- target to generate -->
                                     <language>csharp</language>
