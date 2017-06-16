@@ -93,8 +93,7 @@ public class ApiClient {
         ANDROID_SDK_VERSION = sdkVersion;
     }
 
-    //    private String basePath = "https://gw.api.cloud.sphereon.com/";
-    private String basePath = "http://localhost:22210";
+    private String basePath = "https://gw.api.cloud.sphereon.com/";
     private boolean lenientOnJson = false;
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();

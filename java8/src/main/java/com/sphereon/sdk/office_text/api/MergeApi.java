@@ -38,8 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MergeApi {
-    //    public static final String PREFIX = "/office-text/merge/0.1.0/";
-    public static final String PREFIX = "/";
+    public static final String PREFIX = "/office-text/merge/0.1.0/";
     private ApiClient apiClient;
 
     public MergeApi() {
@@ -108,6 +107,7 @@ public class MergeApi {
     /**
      * Store dataset
      * Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.
+     *
      * @param payload The dates for the merge [   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   },   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   } ] (required)
      * @return DataSetResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -120,6 +120,7 @@ public class MergeApi {
     /**
      * Store dataset
      * Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.
+     *
      * @param payload The dates for the merge [   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   },   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   } ] (required)
      * @return ApiResponse&lt;DataSetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -134,7 +135,8 @@ public class MergeApi {
     /**
      * Store dataset (asynchronously)
      * Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.
-     * @param payload The dates for the merge [   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   },   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   } ] (required)
+     *
+     * @param payload  The dates for the merge [   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   },   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   } ] (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -217,6 +219,7 @@ public class MergeApi {
     /**
      * Create template context
      * Create a unique template context for your environment
+     *
      * @param templateRequest The template request (required)
      * @return TemplateContextResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -229,6 +232,7 @@ public class MergeApi {
     /**
      * Create template context
      * Create a unique template context for your environment
+     *
      * @param templateRequest The template request (required)
      * @return ApiResponse&lt;TemplateContextResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -243,8 +247,9 @@ public class MergeApi {
     /**
      * Create template context (asynchronously)
      * Create a unique template context for your environment
+     *
      * @param templateRequest The template request (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback        The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -327,6 +332,7 @@ public class MergeApi {
     /**
      * Delete a stored data set
      * Delete a stored data set
+     *
      * @param dataSetId dataSetId (required)
      * @return DataSetResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -339,6 +345,7 @@ public class MergeApi {
     /**
      * Delete a stored data set
      * Delete a stored data set
+     *
      * @param dataSetId dataSetId (required)
      * @return ApiResponse&lt;DataSetResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -353,8 +360,9 @@ public class MergeApi {
     /**
      * Delete a stored data set (asynchronously)
      * Delete a stored data set
+     *
      * @param dataSetId dataSetId (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback  The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -437,6 +445,7 @@ public class MergeApi {
     /**
      * Delete a job manually
      * Delete the merge job and all related files
+     *
      * @param jobId jobId (required)
      * @return MergeJobResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -449,6 +458,7 @@ public class MergeApi {
     /**
      * Delete a job manually
      * Delete the merge job and all related files
+     *
      * @param jobId jobId (required)
      * @return ApiResponse&lt;MergeJobResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -463,7 +473,8 @@ public class MergeApi {
     /**
      * Delete a job manually (asynchronously)
      * Delete the merge job and all related files
-     * @param jobId jobId (required)
+     *
+     * @param jobId    jobId (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -547,6 +558,7 @@ public class MergeApi {
     /**
      * Delete template context
      * Delete a template context with all history
+     *
      * @param templateId templateId (required)
      * @return TemplateContextResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -559,6 +571,7 @@ public class MergeApi {
     /**
      * Delete template context
      * Delete a template context with all history
+     *
      * @param templateId templateId (required)
      * @return ApiResponse&lt;TemplateContextResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -573,8 +586,9 @@ public class MergeApi {
     /**
      * Delete template context (asynchronously)
      * Delete a template context with all history
+     *
      * @param templateId templateId (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback   The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -657,6 +671,7 @@ public class MergeApi {
     /**
      * Job definition and state
      * Get the merge job definition and current state. Please not that you can differentiate based on http response status
+     *
      * @param jobId jobId (required)
      * @return MergeJobResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -669,6 +684,7 @@ public class MergeApi {
     /**
      * Job definition and state
      * Get the merge job definition and current state. Please not that you can differentiate based on http response status
+     *
      * @param jobId jobId (required)
      * @return ApiResponse&lt;MergeJobResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -683,7 +699,8 @@ public class MergeApi {
     /**
      * Job definition and state (asynchronously)
      * Get the merge job definition and current state. Please not that you can differentiate based on http response status
-     * @param jobId jobId (required)
+     *
+     * @param jobId    jobId (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -763,6 +780,7 @@ public class MergeApi {
     /**
      * Get all jobs
      * Get all office text job definitions and their current state.
+     *
      * @param status A list of status to filter on. (optional)
      * @return List&lt;MergeJobResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -775,6 +793,7 @@ public class MergeApi {
     /**
      * Get all jobs
      * Get all office text job definitions and their current state.
+     *
      * @param status A list of status to filter on. (optional)
      * @return ApiResponse&lt;List&lt;MergeJobResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -789,7 +808,8 @@ public class MergeApi {
     /**
      * Get all jobs (asynchronously)
      * Get all office text job definitions and their current state.
-     * @param status A list of status to filter on. (optional)
+     *
+     * @param status   A list of status to filter on. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -878,9 +898,10 @@ public class MergeApi {
 
     /**
      * Get the result file
-     * Get a merge result document as a binary stream.   
-     * @param jobId jobId (required)
-     * @param streamId streamId (required)
+     * Get a merge result document as a binary stream.
+     *
+     * @param jobId          jobId (required)
+     * @param streamId       streamId (required)
      * @param outputSettings outputSettings (optional)
      * @return byte[]
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -892,9 +913,10 @@ public class MergeApi {
 
     /**
      * Get the result file
-     * Get a merge result document as a binary stream.   
-     * @param jobId jobId (required)
-     * @param streamId streamId (required)
+     * Get a merge result document as a binary stream.
+     *
+     * @param jobId          jobId (required)
+     * @param streamId       streamId (required)
      * @param outputSettings outputSettings (optional)
      * @return ApiResponse&lt;byte[]&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -908,11 +930,12 @@ public class MergeApi {
 
     /**
      * Get the result file (asynchronously)
-     * Get a merge result document as a binary stream.   
-     * @param jobId jobId (required)
-     * @param streamId streamId (required)
+     * Get a merge result document as a binary stream.
+     *
+     * @param jobId          jobId (required)
+     * @param streamId       streamId (required)
      * @param outputSettings outputSettings (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback       The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -994,8 +1017,9 @@ public class MergeApi {
 
     /**
      * Get the result file
-     * Get all documents inside a compressed container as a binary stream.   
-     * @param jobId jobId (required)
+     * Get all documents inside a compressed container as a binary stream.
+     *
+     * @param jobId          jobId (required)
      * @param outputSettings outputSettings (optional)
      * @return byte[]
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1007,8 +1031,9 @@ public class MergeApi {
 
     /**
      * Get the result file
-     * Get all documents inside a compressed container as a binary stream.   
-     * @param jobId jobId (required)
+     * Get all documents inside a compressed container as a binary stream.
+     *
+     * @param jobId          jobId (required)
      * @param outputSettings outputSettings (optional)
      * @return ApiResponse&lt;byte[]&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1022,10 +1047,11 @@ public class MergeApi {
 
     /**
      * Get the result file (asynchronously)
-     * Get all documents inside a compressed container as a binary stream.   
-     * @param jobId jobId (required)
+     * Get all documents inside a compressed container as a binary stream.
+     *
+     * @param jobId          jobId (required)
      * @param outputSettings outputSettings (optional)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback       The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -1108,6 +1134,7 @@ public class MergeApi {
     /**
      * Get template context
      * Get an existing template context
+     *
      * @param templateId The template context name unique for your environment (required)
      * @return TemplateContextResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1120,6 +1147,7 @@ public class MergeApi {
     /**
      * Get template context
      * Get an existing template context
+     *
      * @param templateId The template context name unique for your environment (required)
      * @return ApiResponse&lt;TemplateContextResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1134,8 +1162,9 @@ public class MergeApi {
     /**
      * Get template context (asynchronously)
      * Get an existing template context
+     *
      * @param templateId The template context name unique for your environment (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback   The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -1217,6 +1246,7 @@ public class MergeApi {
     /**
      * Submit merge job for processing
      * Submit merge job run.
+     *
      * @param mergesettings The merge- and output settings (required)
      * @return MergeJobResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1229,6 +1259,7 @@ public class MergeApi {
     /**
      * Submit merge job for processing
      * Submit merge job run.
+     *
      * @param mergesettings The merge- and output settings (required)
      * @return ApiResponse&lt;MergeJobResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1243,8 +1274,9 @@ public class MergeApi {
     /**
      * Submit merge job for processing (asynchronously)
      * Submit merge job run.
+     *
      * @param mergesettings The merge- and output settings (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback      The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -1326,6 +1358,7 @@ public class MergeApi {
     /**
      * Update template context
      * Update an existing template context for your environment
+     *
      * @param templateContextRequest templateContextRequest (required)
      * @return TemplateContextResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1338,6 +1371,7 @@ public class MergeApi {
     /**
      * Update template context
      * Update an existing template context for your environment
+     *
      * @param templateContextRequest templateContextRequest (required)
      * @return ApiResponse&lt;TemplateContextResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -1352,8 +1386,9 @@ public class MergeApi {
     /**
      * Update template context (asynchronously)
      * Update an existing template context for your environment
+     *
      * @param templateContextRequest templateContextRequest (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param callback               The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
@@ -1443,8 +1478,9 @@ public class MergeApi {
     /**
      * Upload template file
      * Upload the Office template file
+     *
      * @param templateId The template context name unique for your environment (required)
-     * @param stream The template (file/inputstream) to store (required)
+     * @param stream     The template (file/inputstream) to store (required)
      * @return TemplateContextResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -1456,8 +1492,9 @@ public class MergeApi {
     /**
      * Upload template file
      * Upload the Office template file
+     *
      * @param templateId The template context name unique for your environment (required)
-     * @param stream The template (file/inputstream) to store (required)
+     * @param stream     The template (file/inputstream) to store (required)
      * @return ApiResponse&lt;TemplateContextResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -1471,9 +1508,10 @@ public class MergeApi {
     /**
      * Upload template file (asynchronously)
      * Upload the Office template file
+     *
      * @param templateId The template context name unique for your environment (required)
-     * @param stream The template (file/inputstream) to store (required)
-     * @param callback The callback to be executed when the API call finishes
+     * @param stream     The template (file/inputstream) to store (required)
+     * @param callback   The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
