@@ -1,257 +1,7 @@
 {
   "basePath": "/",
   "paths": {
-    "/office-text/merge/0.1.0/jobs/{jobId}/result/container": {"put": {
-      "summary": "Get the result file",
-      "security": [{"oauth2schema": ["global"]}],
-      "produces": ["application/octet-stream"],
-      "description": "Get all documents inside a compressed container as a binary stream.\r\n ",
-      "operationId": "getResultStreamsAsContainer",
-      "responses": {
-        "200": {
-          "schema": {
-            "format": "byte",
-            "type": "string"
-          },
-          "description": "Result package successfully created and returned"
-        },
-        "400": {
-          "schema": {"$ref": "#/definitions/ErrorResponse"},
-          "description": "Result file could not be created."
-        },
-        "202": {
-          "schema": {
-            "format": "byte",
-            "type": "string"
-          },
-          "description": "Result file not yet created. Job is still executing."
-        }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "jobId",
-          "description": "jobId",
-          "type": "string",
-          "required": true
-        },
-        {
-          "schema": {"$ref": "#/definitions/OutputSettings"},
-          "in": "body",
-          "name": "outputSettings",
-          "description": "outputSettings",
-          "required": false
-        }
-      ],
-      "tags": ["Merge"],
-      "consumes": ["application/json;charset=UTF-8"]
-    }},
-    "/office-text/merge/0.1.0/datasets": {"post": {
-      "summary": "Store dataset",
-      "security": [{"oauth2schema": ["global"]}],
-      "produces": ["application/json;charset=UTF-8"],
-      "description": "Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.",
-      "operationId": "createDataSet",
-      "responses": {
-        "200": {
-          "schema": {"$ref": "#/definitions/DataSetResponse"},
-          "description": "Data set received and stored"
-        },
-        "400": {
-          "schema": {"$ref": "#/definitions/ErrorResponse"},
-          "description": "Unsupported data set format"
-        }
-      },
-      "parameters": [{
-        "schema": {"type": "string"},
-        "in": "body",
-        "name": "payload",
-        "description": "The dates for the merge\n[\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  },\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  }\n]",
-        "required": true
-      }],
-      "tags": ["Merge"],
-      "consumes": ["application/json;charset=UTF-8"]
-    }},
-    "/office-text/merge/0.1.0/jobs": {
-      "get": {
-        "summary": "Get all jobs",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Get all office text job definitions and their current state.",
-        "operationId": "getJobs",
-        "responses": {"200": {
-          "schema": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/MergeJobResponse"}
-          },
-          "description": "All office text jobs that have not been deleted"
-        }},
-        "parameters": [{
-          "in": "query",
-          "name": "status",
-          "description": "A list of status to filter on.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "CREATED",
-              "UPDATED",
-              "PROCESSING",
-              "DONE",
-              "ERROR",
-              "DELETED"
-            ]
-          },
-          "collectionFormat": "multi",
-          "required": false,
-          "enum": [
-            "CREATED",
-            "UPDATED",
-            "PROCESSING",
-            "DONE",
-            "ERROR",
-            "DELETED"
-          ]
-        }],
-        "tags": ["Merge"],
-        "consumes": ["application/json"]
-      },
-      "put": {
-        "summary": "Submit merge job for processing",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Submit merge job run.",
-        "operationId": "submitJob",
-        "responses": {"200": {
-          "schema": {"$ref": "#/definitions/MergeJobResponse"},
-          "description": "Merge job submitted"
-        }},
-        "parameters": [{
-          "schema": {"$ref": "#/definitions/MergeSettings"},
-          "in": "body",
-          "name": "mergesettings",
-          "description": "The merge- and output settings",
-          "required": true
-        }],
-        "tags": ["Merge"],
-        "consumes": ["application/json;charset=UTF-8"]
-      }
-    },
-    "/office-text/merge/0.1.0/jobs/{jobId}": {
-      "get": {
-        "summary": "Job definition and state",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Get the merge job definition and current state. Please not that you can differentiate based on http response status",
-        "operationId": "getJob",
-        "responses": {
-          "200": {
-            "schema": {"$ref": "#/definitions/MergeJobResponse"},
-            "description": "Merge job returned and Job is done or in error"
-          },
-          "202": {
-            "schema": {"$ref": "#/definitions/MergeJobResponse"},
-            "description": "Merge job returned and Job is still processing"
-          },
-          "404": {
-            "schema": {"$ref": "#/definitions/ErrorResponse"},
-            "description": "Invalid job id"
-          }
-        },
-        "parameters": [{
-          "in": "path",
-          "name": "jobId",
-          "description": "jobId",
-          "type": "string",
-          "required": true
-        }],
-        "tags": ["Merge"],
-        "consumes": ["application/json"]
-      },
-      "delete": {
-        "summary": "Delete a job manually",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Delete the merge job and all related files",
-        "operationId": "deleteJob",
-        "responses": {
-          "200": {
-            "schema": {"$ref": "#/definitions/MergeJobResponse"},
-            "description": "Merge job returned and Job is done or in error"
-          },
-          "400": {
-            "schema": {"$ref": "#/definitions/ErrorResponse"},
-            "description": "Could not delete job"
-          },
-          "404": {
-            "schema": {"$ref": "#/definitions/ErrorResponse"},
-            "description": "Invalid job id"
-          }
-        },
-        "parameters": [{
-          "in": "path",
-          "name": "jobId",
-          "description": "jobId",
-          "type": "string",
-          "required": true
-        }],
-        "tags": ["Merge"],
-        "consumes": ["application/json"]
-      }
-    },
-    "/office-text/merge/0.1.0/jobs/{jobId}/result/file/{streamId}": {"put": {
-      "summary": "Get the result file",
-      "security": [{"oauth2schema": ["global"]}],
-      "produces": ["application/octet-stream"],
-      "description": "Get a merge result document as a binary stream.\r\n ",
-      "operationId": "getResultStreamById",
-      "responses": {
-        "200": {
-          "schema": {
-            "format": "byte",
-            "type": "string"
-          },
-          "description": "Result file successfully returned"
-        },
-        "400": {
-          "schema": {"$ref": "#/definitions/ErrorResponse"},
-          "description": "Result file could not be created."
-        },
-        "202": {
-          "schema": {
-            "format": "byte",
-            "type": "string"
-          },
-          "description": "Result file not yet created. Job is still executing."
-        }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "jobId",
-          "description": "jobId",
-          "type": "string",
-          "required": true
-        },
-        {
-          "in": "path",
-          "name": "streamId",
-          "description": "streamId",
-          "type": "string",
-          "required": true
-        },
-        {
-          "schema": {"$ref": "#/definitions/OutputSettings"},
-          "in": "body",
-          "name": "outputSettings",
-          "description": "outputSettings",
-          "required": false
-        }
-      ],
-      "tags": ["Merge"],
-      "consumes": ["application/json;charset=UTF-8"]
-    }},
-    "/office-text/merge/0.1.0/templates/{templateId}": {
+    "/office-text/merge/0.1.1/templates/{templateId}": {
       "post": {
         "summary": "Upload template file",
         "security": [{"oauth2schema": ["global"]}],
@@ -352,7 +102,8 @@
         "consumes": ["application/json"]
       }
     },
-    "/office-text/merge/0.1.0/datasets/{dataSetId}": {"delete": {
+    "/office-text/merge/0.1.1/datasets/{dataSetId}": {
+      "delete": {
       "summary": "Delete a stored data set",
       "security": [{"oauth2schema": ["global"]}],
       "produces": ["application/json;charset=UTF-8"],
@@ -382,7 +133,77 @@
       "tags": ["Merge"],
       "consumes": ["application/json"]
     }},
-    "/office-text/merge/0.1.0/templates": {
+    "/office-text/merge/0.1.1/jobs/{jobId}/result/file/{streamId}": {
+      "put": {
+        "summary": "Get the result file",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "description": "Get a merge result document as a binary stream.\r\n ",
+        "operationId": "getResultStreamById",
+        "responses": {
+          "200": {
+            "schema": {
+              "format": "byte",
+              "type": "string"
+            },
+            "description": "Result file successfully returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Result file could not be created."
+          },
+          "202": {
+            "schema": {
+              "format": "byte",
+              "type": "string"
+            },
+            "description": "Result file not yet created. Job is still executing."
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "jobId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "streamId",
+            "description": "streamId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/OutputSettings"
+            },
+            "in": "body",
+            "name": "outputSettings",
+            "description": "outputSettings",
+            "required": false
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ]
+      }
+    },
+    "/office-text/merge/0.1.1/templates": {
       "post": {
         "summary": "Create template context",
         "security": [{"oauth2schema": ["global"]}],
@@ -438,6 +259,322 @@
         }],
         "tags": ["Merge"],
         "consumes": ["application/json;charset=UTF-8"]
+      }
+    },
+    "/office-text/merge/0.1.1/datasets": {
+      "post": {
+        "summary": "Store dataset",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "description": "Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.",
+        "operationId": "createDataSet",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/DataSetResponse"
+            },
+            "description": "Data set received and stored"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Unsupported data set format"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "body",
+            "name": "payload",
+            "description": "The dates for the merge\n[\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  },\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  }\n]",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ]
+      }
+    },
+    "/office-text/merge/0.1.1/jobs/{jobId}/result/container": {
+      "put": {
+        "summary": "Get the result file",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "description": "Get all documents inside a compressed container as a binary stream.\r\n ",
+        "operationId": "getResultStreamsAsContainer",
+        "responses": {
+          "200": {
+            "schema": {
+              "format": "byte",
+              "type": "string"
+            },
+            "description": "Result package successfully created and returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Result file could not be created."
+          },
+          "202": {
+            "schema": {
+              "format": "byte",
+              "type": "string"
+            },
+            "description": "Result file not yet created. Job is still executing."
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "jobId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/OutputSettings"
+            },
+            "in": "body",
+            "name": "outputSettings",
+            "description": "outputSettings",
+            "required": false
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ]
+      }
+    },
+    "/office-text/merge/0.1.1/jobs/{jobId}": {
+      "get": {
+        "summary": "Job definition and state",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "description": "Get the merge job definition and current state. Please not that you can differentiate based on http response status",
+        "operationId": "getJob",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/MergeJobResponse"
+            },
+            "description": "Merge job returned and Job is done or in error"
+          },
+          "202": {
+            "schema": {
+              "$ref": "#/definitions/MergeJobResponse"
+            },
+            "description": "Merge job returned and Job is still processing"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Invalid job id"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "jobId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a job manually",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "description": "Delete the merge job and all related files",
+        "operationId": "deleteJob",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/MergeJobResponse"
+            },
+            "description": "Merge job returned and Job is done or in error"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Could not delete job"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            },
+            "description": "Invalid job id"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "jobId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      }
+    },
+    "/office-text/merge/0.1.1/jobs": {
+      "get": {
+        "summary": "Get all jobs",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "description": "Get all office text job definitions and their current state.",
+        "operationId": "getJobs",
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MergeJobResponse"
+              }
+            },
+            "description": "All office text jobs that have not been deleted"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "description": "A list of status to filter on.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CREATED",
+                "UPDATED",
+                "PROCESSING",
+                "DONE",
+                "ERROR",
+                "DELETED"
+              ]
+            },
+            "collectionFormat": "multi",
+            "required": false,
+            "enum": [
+              "CREATED",
+              "UPDATED",
+              "PROCESSING",
+              "DONE",
+              "ERROR",
+              "DELETED"
+            ]
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json"
+        ]
+      },
+      "put": {
+        "summary": "Submit merge job for processing",
+        "security": [
+          {
+            "oauth2schema": [
+              "global"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "description": "Submit merge job run.",
+        "operationId": "submitJob",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/MergeJobResponse"
+            },
+            "description": "Merge job submitted"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/MergeSettings"
+            },
+            "in": "body",
+            "name": "mergesettings",
+            "description": "The merge- and output settings",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Merge"
+        ],
+        "consumes": [
+          "application/json;charset=UTF-8"
+        ]
       }
     }
   },
@@ -815,7 +952,7 @@
     "description": "<b>The Office Text API can generate office documents from a template and a JSON data file<<\/b>\r\n\r\nThe flow is generally as follows:\r\n\r\n\r\n<b>Interactive testing: <\/b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store<\/a>",
     "termsOfService": "https://sphereon.com",
     "title": "OfficeTextMerge",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "tags": [{
     "name": "Merge",

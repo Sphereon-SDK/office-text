@@ -4,19 +4,19 @@ All URIs are relative to *https://gw.api.cloud.sphereon.com/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDataSet**](MergeApi.md#createdataset) | **POST** /office-text/merge/0.1.0/datasets | Store dataset
-[**CreateTemplateContext**](MergeApi.md#createtemplatecontext) | **POST** /office-text/merge/0.1.0/templates | Create template context
-[**DeleteDataSet**](MergeApi.md#deletedataset) | **DELETE** /office-text/merge/0.1.0/datasets/{dataSetId} | Delete a stored data set
-[**DeleteJob**](MergeApi.md#deletejob) | **DELETE** /office-text/merge/0.1.0/jobs/{jobId} | Delete a job manually
-[**DeleteTemplateContext**](MergeApi.md#deletetemplatecontext) | **DELETE** /office-text/merge/0.1.0/templates/{templateId} | Delete template context
-[**GetJob**](MergeApi.md#getjob) | **GET** /office-text/merge/0.1.0/jobs/{jobId} | Job definition and state
-[**GetJobs**](MergeApi.md#getjobs) | **GET** /office-text/merge/0.1.0/jobs | Get all jobs
-[**GetResultStreamById**](MergeApi.md#getresultstreambyid) | **PUT** /office-text/merge/0.1.0/jobs/{jobId}/result/file/{streamId} | Get the result file
-[**GetResultStreamsAsContainer**](MergeApi.md#getresultstreamsascontainer) | **PUT** /office-text/merge/0.1.0/jobs/{jobId}/result/container | Get the result file
-[**GetTemplateContext**](MergeApi.md#gettemplatecontext) | **GET** /office-text/merge/0.1.0/templates/{templateId} | Get template context
-[**SubmitJob**](MergeApi.md#submitjob) | **PUT** /office-text/merge/0.1.0/jobs | Submit merge job for processing
-[**UpdateTemplateContext**](MergeApi.md#updatetemplatecontext) | **PUT** /office-text/merge/0.1.0/templates | Update template context
-[**UploadTemplateFile**](MergeApi.md#uploadtemplatefile) | **POST** /office-text/merge/0.1.0/templates/{templateId} | Upload template file
+[**CreateDataSet**](MergeApi.md#createdataset) | **POST** /office-text/merge/0.1.1/datasets | Store dataset
+[**CreateTemplateContext**](MergeApi.md#createtemplatecontext) | **POST** /office-text/merge/0.1.1/templates | Create template context
+[**DeleteDataSet**](MergeApi.md#deletedataset) | **DELETE** /office-text/merge/0.1.1/datasets/{dataSetId} | Delete a stored data set
+[**DeleteJob**](MergeApi.md#deletejob) | **DELETE** /office-text/merge/0.1.1/jobs/{jobId} | Delete a job manually
+[**DeleteTemplateContext**](MergeApi.md#deletetemplatecontext) | **DELETE** /office-text/merge/0.1.1/templates/{templateId} | Delete template context
+[**GetJob**](MergeApi.md#getjob) | **GET** /office-text/merge/0.1.1/jobs/{jobId} | Job definition and state
+[**GetJobs**](MergeApi.md#getjobs) | **GET** /office-text/merge/0.1.1/jobs | Get all jobs
+[**GetResultStreamById**](MergeApi.md#getresultstreambyid) | **PUT** /office-text/merge/0.1.1/jobs/{jobId}/result/file/{streamId} | Get the result file
+[**GetResultStreamsAsContainer**](MergeApi.md#getresultstreamsascontainer) | **PUT** /office-text/merge/0.1.1/jobs/{jobId}/result/container | Get the result file
+[**GetTemplateContext**](MergeApi.md#gettemplatecontext) | **GET** /office-text/merge/0.1.1/templates/{templateId} | Get template context
+[**SubmitJob**](MergeApi.md#submitjob) | **PUT** /office-text/merge/0.1.1/jobs | Submit merge job for processing
+[**UpdateTemplateContext**](MergeApi.md#updatetemplatecontext) | **PUT** /office-text/merge/0.1.1/templates | Update template context
+[**UploadTemplateFile**](MergeApi.md#uploadtemplatefile) | **POST** /office-text/merge/0.1.1/templates/{templateId} | Upload template file
 
 
 <a name="createdataset"></a>
