@@ -1,17 +1,17 @@
 {
   "lang": "csharp",
-  "packageTitle": "OFFICE-TEXT SDK C# .net45",
+  "packageTitle": "TEMPLATE-PROCESSOR SDK C# .net45",
   "inputSpec": "swagger.json",
   "outputDir": "csharp-net45",
   "verbose": true,
   "skipOverwrite": false,
   "templateDir": "src/main/resources",
   "auth": "hello:world",
-  "apiPackage": "Sphereon.SDK.OFFICE-TEXT.Api",
-  "modelPackage": "Sphereon.SDK.OFFICE-TEXT.Model",
-  "invokerPackage": "Sphereon.SDK.OFFICE-TEXT.Invoker",
+  "apiPackage": "Sphereon.SDK.TEMPLATE-PROCESSOR.Api",
+  "modelPackage": "Sphereon.SDK.TEMPLATE-PROCESSOR.Model",
+  "invokerPackage": "Sphereon.SDK.TEMPLATE-PROCESSOR.Invoker",
   "groupId": "com.sphereon.sdk",
-  "artifactId": "office-text-sdk-csharp-net45",
+  "artifactId": "template-processor-sdk-csharp-net45",
   "artifactVersion": "0.0.1-SNAPSHOT",
   "systemProperties": {
     "systemProp1": "value1"
