@@ -5,7 +5,7 @@
         <groupId>com.sphereon.sdk</groupId>
         <artifactId>template-processor-sdk-generator</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>0.1.2</version>
+        <version>0.1.3-SNAPSHOT</version>
     </parent>
     <artifactId>template-processor-sdk-java8</artifactId>
     <packaging>jar</packaging>
