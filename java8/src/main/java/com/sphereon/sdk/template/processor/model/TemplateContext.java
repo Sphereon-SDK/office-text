@@ -39,7 +39,7 @@ import java.util.Map;
 /**
  * TemplateContext
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-07T22:48:37.114+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-07T23:35:11.957+02:00")
 public class TemplateContext   {
   /**
    * Gets or Sets templateType

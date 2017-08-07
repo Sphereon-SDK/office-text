@@ -40,7 +40,7 @@ import java.util.List;
  * The merge job. Has access to the job merge data.
  */
 @ApiModel(description = "The merge job. Has access to the job merge data.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-07T22:48:37.114+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-07T23:35:11.957+02:00")
 public class MergeJob   {
   @SerializedName("resultFolderPath")
   private String resultFolderPath = null;

@@ -37,7 +37,7 @@ import java.time.OffsetDateTime;
  * The merge template response.
  */
 @ApiModel(description = "The merge template response.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-07T22:48:37.114+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-07T23:35:11.957+02:00")
 public class TemplateContextResponse   {
   @SerializedName("creationTime")
   private OffsetDateTime creationTime = null;

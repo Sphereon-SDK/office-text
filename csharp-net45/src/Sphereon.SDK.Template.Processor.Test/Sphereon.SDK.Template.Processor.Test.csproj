@@ -86,7 +86,7 @@ limitations under the License.
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\Sphereon.SDK.Template.Processor\Sphereon.SDK.Template.Processor.csproj">
-          <Project>{BD6ABAC7-F4EB-4536-8992-8FA321822EBD}</Project>
+          <Project>{A73CC262-2AE2-45A8-A793-03A98EF00AAD}</Project>
           <Name>Sphereon.SDK.Template.Processor</Name>
       </ProjectReference>
   </ItemGroup>
