@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.ErrorResponse
+# Sphereon.SDK.Template.Processor.Model.ErrorResponse
 ## Properties
 
 Name | Type | Description | Notes

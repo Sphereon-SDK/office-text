@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.MergeJobResponse
+# Sphereon.SDK.Template.Processor.Model.MergeJobResponse
 ## Properties
 
 Name | Type | Description | Notes

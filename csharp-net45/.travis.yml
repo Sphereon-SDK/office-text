@@ -16,6 +16,6 @@
 language: csharp
 mono:
   - latest
-solution: Sphereon.SDK.Office-text.sln
+solution: Sphereon.SDK.Template.Processor.sln
 script:
   - /bin/sh ./mono_nunit_test.sh

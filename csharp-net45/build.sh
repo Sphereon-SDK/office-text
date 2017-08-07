@@ -22,21 +22,21 @@ echo "[INFO] Target framework: ${frameworkVersion}"
 echo "[INFO] Download nuget and packages"
 wget -nc https://nuget.org/nuget.exe;
 mozroots --import --sync
-mono nuget.exe install src/Sphereon.SDK.Office-text/packages.config -o packages;
+mono nuget.exe install src/Sphereon.SDK.Template.Processor/packages.config -o packages;
 
 echo "[INFO] Copy DLLs to the 'bin' folder"
 mkdir -p bin;
 cp packages/Newtonsoft.Json.8.0.3/lib/net45/Newtonsoft.Json.dll bin/Newtonsoft.Json.dll;
 cp packages/RestSharp.105.1.0/lib/net45/RestSharp.dll bin/RestSharp.dll;
 
-echo "[INFO] Run 'mcs' to build bin/Sphereon.SDK.Office-text.dll"
+echo "[INFO] Run 'mcs' to build bin/Sphereon.SDK.Template.Processor.dll"
 mcs -sdk:${netfx} -r:bin/Newtonsoft.Json.dll,\
 bin/RestSharp.dll,\
 System.Runtime.Serialization.dll \
 -target:library \
--out:bin/Sphereon.SDK.Office-text.dll \
--recurse:'src/Sphereon.SDK.Office-text/*.cs' \
--doc:bin/Sphereon.SDK.Office-text.xml \
+-out:bin/Sphereon.SDK.Template.Processor.dll \
+-recurse:'src/Sphereon.SDK.Template.Processor/*.cs' \
+-doc:bin/Sphereon.SDK.Template.Processor.xml \
 -platform:anycpu
 
 if [ $? -ne 0 ]
@@ -44,5 +44,5 @@ then
   echo "[ERROR] Compilation failed with exit code $?"
   exit 1
 else
-  echo "[INFO] bin/Sphereon.SDK.Office-text.dll was created successfully"
+  echo "[INFO] bin/Sphereon.SDK.Template.Processor.dll was created successfully"
 fi

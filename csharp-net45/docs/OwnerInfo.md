@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.OwnerInfo
+# Sphereon.SDK.Template.Processor.Model.OwnerInfo
 ## Properties
 
 Name | Type | Description | Notes

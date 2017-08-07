@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.Lifecycle
+# Sphereon.SDK.Template.Processor.Model.Lifecycle
 ## Properties
 
 Name | Type | Description | Notes

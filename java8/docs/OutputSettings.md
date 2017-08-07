@@ -33,6 +33,9 @@ TIFF | &quot;TIFF&quot;
 PNG | &quot;PNG&quot;
 BMP | &quot;BMP&quot;
 JPEG | &quot;JPEG&quot;
+TXT | &quot;TXT&quot;
+XML | &quot;XML&quot;
+JSON | &quot;JSON&quot;
 DEFAULT | &quot;DEFAULT&quot;
 
 

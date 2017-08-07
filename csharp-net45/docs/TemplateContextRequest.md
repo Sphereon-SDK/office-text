@@ -1,8 +1,9 @@
-# Sphereon.SDK.Office-text.Model.TemplateContextRequest
+# Sphereon.SDK.Template.Processor.Model.TemplateContextRequest
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**TemplateType** | **string** |  | 
 **Description** | **string** |  | [optional] 
 **OwnerInfo** | [**OwnerInfo**](OwnerInfo.md) |  | [optional] 
 **TemplateId** | **string** | The template context id | [optional] 

@@ -1,9 +1,10 @@
-# Sphereon.SDK.Office-text.Model.TemplateContext
+# Sphereon.SDK.Template.Processor.Model.TemplateContext
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TemplateFiles** | **Dictionary&lt;string, string&gt;** | The template files (versioned) | [optional] 
+**TemplateType** | **string** |  | 
+**TemplateFileLocations** | [**Dictionary&lt;string, StreamLocation&gt;**](StreamLocation.md) | The template files (versioned) | [optional] 
 **Description** | **string** | The template description | [optional] 
 **OwnerInfo** | [**OwnerInfo**](OwnerInfo.md) |  | [optional] 
 **Id** | **string** |  | [optional] 

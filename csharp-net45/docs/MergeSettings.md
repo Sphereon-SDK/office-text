@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.MergeSettings
+# Sphereon.SDK.Template.Processor.Model.MergeSettings
 ## Properties
 
 Name | Type | Description | Notes
@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **DataSetId** | **string** | Data set id | 
 **Engine** | **string** |  | [optional] 
 **HeaderDataSetIds** | **List&lt;string&gt;** | optional header data set ids | [optional] 
-**TemplateVersion** | **string** | Template version | [optional] 
+**TemplateVersion** | **int?** | Template version | [optional] 
+**ResultStreamLocation** | [**StreamLocation**](StreamLocation.md) | The output location of the result files. | 
 **TemplateId** | **string** | Template id | 
 **OutputSettings** | [**OutputSettings**](OutputSettings.md) |  | 
 

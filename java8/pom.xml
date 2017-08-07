@@ -1,19 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.sphereon.sdk</groupId>
-    <artifactId>office-text-sdk-java8</artifactId>
+    <parent>
+        <groupId>com.sphereon.sdk</groupId>
+        <artifactId>template-processor-sdk-generator</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>0.1.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>template-processor-sdk-java8</artifactId>
     <packaging>jar</packaging>
-    <name>office-text-sdk-java8</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <name>template-processor-sdk-java8</name>
+
     <scm>
         <connection>scm:git:git@github.com:swagger-api/swagger-mustache.git</connection>
         <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
         <url>https://github.com/swagger-api/swagger-codegen</url>
     </scm>
-    <prerequisites>
-        <maven>2.2.0</maven>
-    </prerequisites>
+
 
     <build>
         <plugins>
@@ -140,7 +143,6 @@
             <artifactId>tika-core</artifactId>
             <scope>test</scope>
             <version>${tika-core.version}</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

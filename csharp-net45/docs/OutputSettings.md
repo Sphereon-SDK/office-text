@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.OutputSettings
+# Sphereon.SDK.Template.Processor.Model.OutputSettings
 ## Properties
 
 Name | Type | Description | Notes

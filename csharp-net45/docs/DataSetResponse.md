@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.DataSetResponse
+# Sphereon.SDK.Template.Processor.Model.DataSetResponse
 ## Properties
 
 Name | Type | Description | Notes

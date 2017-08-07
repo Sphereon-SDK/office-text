@@ -1,4 +1,4 @@
-# Sphereon.SDK.Office-text.Model.TemplateContextResponse
+# Sphereon.SDK.Template.Processor.Model.TemplateContextResponse
 ## Properties
 
 Name | Type | Description | Notes
