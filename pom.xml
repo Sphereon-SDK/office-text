@@ -4,7 +4,7 @@
     <groupId>com.sphereon.sdk</groupId>
     <artifactId>template-processor-sdk-generator</artifactId>
     <packaging>pom</packaging>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>0.1.2</version>
     <name>Template Processor SDK Generator</name>
 
 
