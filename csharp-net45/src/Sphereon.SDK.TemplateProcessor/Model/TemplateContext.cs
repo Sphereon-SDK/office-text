@@ -1,7 +1,7 @@
 /* 
- * OfficeTextMerge
+ * Template-Processor
  *
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -76,9 +76,10 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         /// <param name="TemplateFileLocations">The template files (versioned).</param>
         /// <param name="Description">The template description.</param>
         /// <param name="OwnerInfo">OwnerInfo.</param>
+        /// <param name="StorageLocation">The storage location. (optional).</param>
         /// <param name="Id">Id.</param>
         /// <param name="TemplateId">The template context id.</param>
-        public TemplateContext(TemplateTypeEnum? TemplateType = null, Dictionary<string, StreamLocation> TemplateFileLocations = null, string Description = null, OwnerInfo OwnerInfo = null, string Id = null, string TemplateId = null)
+        public TemplateContext(TemplateTypeEnum? TemplateType = null, Dictionary<string, StreamLocation> TemplateFileLocations = null, string Description = null, OwnerInfo OwnerInfo = null, StorageLocation StorageLocation = null, string Id = null, string TemplateId = null)
         {
             // to ensure "TemplateType" is required (not null)
             if (TemplateType == null)
@@ -92,6 +93,7 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             this.TemplateFileLocations = TemplateFileLocations;
             this.Description = Description;
             this.OwnerInfo = OwnerInfo;
+            this.StorageLocation = StorageLocation;
             this.Id = Id;
             this.TemplateId = TemplateId;
         }
@@ -113,6 +115,12 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         /// </summary>
         [DataMember(Name="ownerInfo", EmitDefaultValue=false)]
         public OwnerInfo OwnerInfo { get; set; }
+        /// <summary>
+        /// The storage location. (optional)
+        /// </summary>
+        /// <value>The storage location. (optional)</value>
+        [DataMember(Name="storageLocation", EmitDefaultValue=false)]
+        public StorageLocation StorageLocation { get; set; }
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
@@ -136,6 +144,7 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             sb.Append("  TemplateFileLocations: ").Append(TemplateFileLocations).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  OwnerInfo: ").Append(OwnerInfo).Append("\n");
+            sb.Append("  StorageLocation: ").Append(StorageLocation).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("}\n");
@@ -195,6 +204,11 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     this.OwnerInfo.Equals(other.OwnerInfo)
                 ) && 
                 (
+                    this.StorageLocation == other.StorageLocation ||
+                    this.StorageLocation != null &&
+                    this.StorageLocation.Equals(other.StorageLocation)
+                ) && 
+                (
                     this.Id == other.Id ||
                     this.Id != null &&
                     this.Id.Equals(other.Id)
@@ -225,6 +239,8 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.OwnerInfo != null)
                     hash = hash * 59 + this.OwnerInfo.GetHashCode();
+                if (this.StorageLocation != null)
+                    hash = hash * 59 + this.StorageLocation.GetHashCode();
                 if (this.Id != null)
                     hash = hash * 59 + this.Id.GetHashCode();
                 if (this.TemplateId != null)

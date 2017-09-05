@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **TemplateFileLocations** | [**Dictionary&lt;string, StreamLocation&gt;**](StreamLocation.md) | The template files (versioned) | [optional] 
 **Description** | **string** | The template description | [optional] 
 **OwnerInfo** | [**OwnerInfo**](OwnerInfo.md) |  | [optional] 
+**StorageLocation** | [**StorageLocation**](StorageLocation.md) | The storage location. (optional) | [optional] 
 **Id** | **string** |  | [optional] 
 **TemplateId** | **string** | The template context id | [optional] 
 

@@ -1,6 +1,6 @@
 /*
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -34,7 +34,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Location record of data stream
  */
 @ApiModel(description = "Location record of data stream")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-07-28T16:30:12.470+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:54.103+02:00")
 public class StreamLocation {
   @SerializedName("folderPath")
   private String folderPath = null;
@@ -42,11 +42,11 @@ public class StreamLocation {
   @SerializedName("originalFileName")
   private String originalFileName = null;
 
+  @SerializedName("fileName")
+  private String fileName = null;
+
   @SerializedName("containerId")
   private String containerId = null;
-
-  @SerializedName("fileId")
-  private String fileId = null;
 
   public StreamLocation folderPath(String folderPath) {
     this.folderPath = folderPath;
@@ -84,6 +84,24 @@ public class StreamLocation {
     this.originalFileName = originalFileName;
   }
 
+  public StreamLocation fileName(String fileName) {
+    this.fileName = fileName;
+    return this;
+  }
+
+   /**
+   * Get fileName
+   * @return fileName
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
+
   public StreamLocation containerId(String containerId) {
     this.containerId = containerId;
     return this;
@@ -102,24 +120,6 @@ public class StreamLocation {
     this.containerId = containerId;
   }
 
-  public StreamLocation fileId(String fileId) {
-    this.fileId = fileId;
-    return this;
-  }
-
-   /**
-   * Get fileId
-   * @return fileId
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public String getFileId() {
-    return fileId;
-  }
-
-  public void setFileId(String fileId) {
-    this.fileId = fileId;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -132,13 +132,13 @@ public class StreamLocation {
     StreamLocation streamLocation = (StreamLocation) o;
     return Objects.equals(this.folderPath, streamLocation.folderPath) &&
         Objects.equals(this.originalFileName, streamLocation.originalFileName) &&
-        Objects.equals(this.containerId, streamLocation.containerId) &&
-        Objects.equals(this.fileId, streamLocation.fileId);
+        Objects.equals(this.fileName, streamLocation.fileName) &&
+        Objects.equals(this.containerId, streamLocation.containerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(folderPath, originalFileName, containerId, fileId);
+    return Objects.hash(folderPath, originalFileName, fileName, containerId);
   }
 
 
@@ -149,8 +149,8 @@ public class StreamLocation {
     
     sb.append("    folderPath: ").append(toIndentedString(folderPath)).append("\n");
     sb.append("    originalFileName: ").append(toIndentedString(originalFileName)).append("\n");
+    sb.append("    fileName: ").append(toIndentedString(fileName)).append("\n");
     sb.append("    containerId: ").append(toIndentedString(containerId)).append("\n");
-    sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

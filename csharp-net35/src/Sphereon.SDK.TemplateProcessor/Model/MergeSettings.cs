@@ -1,7 +1,7 @@
 /* 
- * OfficeTextMerge
+ * Template-Processor
  *
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -102,11 +102,11 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         /// <param name="DataSetId">Data set id (required).</param>
         /// <param name="Engine">Engine.</param>
         /// <param name="HeaderDataSetIds">optional header data set ids.</param>
+        /// <param name="ResultStorageLocation">The output location of the result files. (required).</param>
         /// <param name="TemplateVersion">Template version.</param>
-        /// <param name="ResultStreamLocation">The output location of the result files. (required).</param>
         /// <param name="TemplateId">Template id (required).</param>
         /// <param name="OutputSettings">OutputSettings (required).</param>
-        public MergeSettings(Lifecycle Lifecycle = null, MergeResultEnum? MergeResult = null, string DataSetId = null, EngineEnum? Engine = null, List<string> HeaderDataSetIds = null, int? TemplateVersion = null, StreamLocation ResultStreamLocation = null, string TemplateId = null, OutputSettings OutputSettings = null)
+        public MergeSettings(Lifecycle Lifecycle = null, MergeResultEnum? MergeResult = null, string DataSetId = null, EngineEnum? Engine = null, List<string> HeaderDataSetIds = null, StorageLocation ResultStorageLocation = null, int? TemplateVersion = null, string TemplateId = null, OutputSettings OutputSettings = null)
         {
             // to ensure "DataSetId" is required (not null)
             if (DataSetId == null)
@@ -117,14 +117,14 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             {
                 this.DataSetId = DataSetId;
             }
-            // to ensure "ResultStreamLocation" is required (not null)
-            if (ResultStreamLocation == null)
+            // to ensure "ResultStorageLocation" is required (not null)
+            if (ResultStorageLocation == null)
             {
-                throw new InvalidDataException("ResultStreamLocation is a required property for MergeSettings and cannot be null");
+                throw new InvalidDataException("ResultStorageLocation is a required property for MergeSettings and cannot be null");
             }
             else
             {
-                this.ResultStreamLocation = ResultStreamLocation;
+                this.ResultStorageLocation = ResultStorageLocation;
             }
             // to ensure "TemplateId" is required (not null)
             if (TemplateId == null)
@@ -169,17 +169,17 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         [DataMember(Name="headerDataSetIds", EmitDefaultValue=false)]
         public List<string> HeaderDataSetIds { get; set; }
         /// <summary>
+        /// The output location of the result files.
+        /// </summary>
+        /// <value>The output location of the result files.</value>
+        [DataMember(Name="resultStorageLocation", EmitDefaultValue=false)]
+        public StorageLocation ResultStorageLocation { get; set; }
+        /// <summary>
         /// Template version
         /// </summary>
         /// <value>Template version</value>
         [DataMember(Name="templateVersion", EmitDefaultValue=false)]
         public int? TemplateVersion { get; set; }
-        /// <summary>
-        /// The output location of the result files.
-        /// </summary>
-        /// <value>The output location of the result files.</value>
-        [DataMember(Name="resultStreamLocation", EmitDefaultValue=false)]
-        public StreamLocation ResultStreamLocation { get; set; }
         /// <summary>
         /// Template id
         /// </summary>
@@ -204,8 +204,8 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             sb.Append("  DataSetId: ").Append(DataSetId).Append("\n");
             sb.Append("  Engine: ").Append(Engine).Append("\n");
             sb.Append("  HeaderDataSetIds: ").Append(HeaderDataSetIds).Append("\n");
+            sb.Append("  ResultStorageLocation: ").Append(ResultStorageLocation).Append("\n");
             sb.Append("  TemplateVersion: ").Append(TemplateVersion).Append("\n");
-            sb.Append("  ResultStreamLocation: ").Append(ResultStreamLocation).Append("\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  OutputSettings: ").Append(OutputSettings).Append("\n");
             sb.Append("}\n");
@@ -270,14 +270,14 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     this.HeaderDataSetIds.SequenceEqual(other.HeaderDataSetIds)
                 ) && 
                 (
+                    this.ResultStorageLocation == other.ResultStorageLocation ||
+                    this.ResultStorageLocation != null &&
+                    this.ResultStorageLocation.Equals(other.ResultStorageLocation)
+                ) && 
+                (
                     this.TemplateVersion == other.TemplateVersion ||
                     this.TemplateVersion != null &&
                     this.TemplateVersion.Equals(other.TemplateVersion)
-                ) && 
-                (
-                    this.ResultStreamLocation == other.ResultStreamLocation ||
-                    this.ResultStreamLocation != null &&
-                    this.ResultStreamLocation.Equals(other.ResultStreamLocation)
                 ) && 
                 (
                     this.TemplateId == other.TemplateId ||
@@ -312,10 +312,10 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     hash = hash * 59 + this.Engine.GetHashCode();
                 if (this.HeaderDataSetIds != null)
                     hash = hash * 59 + this.HeaderDataSetIds.GetHashCode();
+                if (this.ResultStorageLocation != null)
+                    hash = hash * 59 + this.ResultStorageLocation.GetHashCode();
                 if (this.TemplateVersion != null)
                     hash = hash * 59 + this.TemplateVersion.GetHashCode();
-                if (this.ResultStreamLocation != null)
-                    hash = hash * 59 + this.ResultStreamLocation.GetHashCode();
                 if (this.TemplateId != null)
                     hash = hash * 59 + this.TemplateId.GetHashCode();
                 if (this.OutputSettings != null)

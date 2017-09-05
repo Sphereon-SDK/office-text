@@ -1,4 +1,4 @@
-# OfficeTextMerge.OutputSettings
+# TemplateProcessor.OutputSettings
 
 ## Properties
 Name | Type | Description | Notes

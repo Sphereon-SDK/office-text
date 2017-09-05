@@ -1,4 +1,4 @@
-# OfficeTextMerge.ErrorResponse
+# TemplateProcessor.ErrorResponse
 
 ## Properties
 Name | Type | Description | Notes

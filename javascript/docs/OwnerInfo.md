@@ -1,4 +1,4 @@
-# OfficeTextMerge.OwnerInfo
+# TemplateProcessor.OwnerInfo
 
 ## Properties
 Name | Type | Description | Notes

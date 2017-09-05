@@ -1,6 +1,6 @@
 /**
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -31,10 +31,10 @@
     module.exports = factory(require('../ApiClient'));
   } else {
     // Browser globals (root is window)
-    if (!root.OfficeTextMerge) {
-      root.OfficeTextMerge = {};
+    if (!root.TemplateProcessor) {
+      root.TemplateProcessor = {};
     }
-    root.OfficeTextMerge.StreamLocation = factory(root.OfficeTextMerge.ApiClient);
+    root.TemplateProcessor.StreamLocation = factory(root.TemplateProcessor.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -80,11 +80,11 @@
       if (data.hasOwnProperty('originalFileName')) {
         obj['originalFileName'] = ApiClient.convertToType(data['originalFileName'], 'String');
       }
+      if (data.hasOwnProperty('fileName')) {
+        obj['fileName'] = ApiClient.convertToType(data['fileName'], 'String');
+      }
       if (data.hasOwnProperty('containerId')) {
         obj['containerId'] = ApiClient.convertToType(data['containerId'], 'String');
-      }
-      if (data.hasOwnProperty('fileId')) {
-        obj['fileId'] = ApiClient.convertToType(data['fileId'], 'String');
       }
     }
     return obj;
@@ -99,13 +99,13 @@
    */
   exports.prototype['originalFileName'] = undefined;
   /**
+   * @member {String} fileName
+   */
+  exports.prototype['fileName'] = undefined;
+  /**
    * @member {String} containerId
    */
   exports.prototype['containerId'] = undefined;
-  /**
-   * @member {String} fileId
-   */
-  exports.prototype['fileId'] = undefined;
 
 
 

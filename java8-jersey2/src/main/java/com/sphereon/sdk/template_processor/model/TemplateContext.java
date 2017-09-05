@@ -1,6 +1,6 @@
 /*
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -29,6 +29,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.sphereon.sdk.template_processor.model.OwnerInfo;
+import com.sphereon.sdk.template_processor.model.StorageLocation;
 import com.sphereon.sdk.template_processor.model.StreamLocation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -39,7 +40,7 @@ import java.util.Map;
 /**
  * TemplateContext
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-07-28T16:29:49.515+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:31.439+02:00")
 public class TemplateContext {
   /**
    * Gets or Sets templateType
@@ -82,6 +83,9 @@ public class TemplateContext {
 
   @JsonProperty("ownerInfo")
   private OwnerInfo ownerInfo = null;
+
+  @JsonProperty("storageLocation")
+  private StorageLocation storageLocation = null;
 
   @JsonProperty("id")
   private String id = null;
@@ -166,6 +170,24 @@ public class TemplateContext {
     this.ownerInfo = ownerInfo;
   }
 
+  public TemplateContext storageLocation(StorageLocation storageLocation) {
+    this.storageLocation = storageLocation;
+    return this;
+  }
+
+   /**
+   * The storage location. (optional)
+   * @return storageLocation
+  **/
+  @ApiModelProperty(example = "null", value = "The storage location. (optional)")
+  public StorageLocation getStorageLocation() {
+    return storageLocation;
+  }
+
+  public void setStorageLocation(StorageLocation storageLocation) {
+    this.storageLocation = storageLocation;
+  }
+
   public TemplateContext id(String id) {
     this.id = id;
     return this;
@@ -216,13 +238,14 @@ public class TemplateContext {
         Objects.equals(this.templateFileLocations, templateContext.templateFileLocations) &&
         Objects.equals(this.description, templateContext.description) &&
         Objects.equals(this.ownerInfo, templateContext.ownerInfo) &&
+        Objects.equals(this.storageLocation, templateContext.storageLocation) &&
         Objects.equals(this.id, templateContext.id) &&
         Objects.equals(this.templateId, templateContext.templateId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(templateType, templateFileLocations, description, ownerInfo, id, templateId);
+    return Objects.hash(templateType, templateFileLocations, description, ownerInfo, storageLocation, id, templateId);
   }
 
 
@@ -235,6 +258,7 @@ public class TemplateContext {
     sb.append("    templateFileLocations: ").append(toIndentedString(templateFileLocations)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    ownerInfo: ").append(toIndentedString(ownerInfo)).append("\n");
+    sb.append("    storageLocation: ").append(toIndentedString(storageLocation)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
     sb.append("}");

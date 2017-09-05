@@ -1,6 +1,6 @@
 /*
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -29,7 +29,7 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import com.sphereon.sdk.template_processor.model.Lifecycle;
 import com.sphereon.sdk.template_processor.model.OutputSettings;
-import com.sphereon.sdk.template_processor.model.StreamLocation;
+import com.sphereon.sdk.template_processor.model.StorageLocation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ import java.util.List;
  * Merge settings
  */
 @ApiModel(description = "Merge settings")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-07-28T16:30:04.861+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:52.838+02:00")
 public class MergeSettings {
   @SerializedName("lifecycle")
   private Lifecycle lifecycle = null;
@@ -100,11 +100,11 @@ public class MergeSettings {
   @SerializedName("headerDataSetIds")
   private List<String> headerDataSetIds = new ArrayList<String>();
 
+  @SerializedName("resultStorageLocation")
+  private StorageLocation resultStorageLocation = null;
+
   @SerializedName("templateVersion")
   private Integer templateVersion = null;
-
-  @SerializedName("resultStreamLocation")
-  private StreamLocation resultStreamLocation = null;
 
   @SerializedName("templateId")
   private String templateId = null;
@@ -207,6 +207,24 @@ public class MergeSettings {
     this.headerDataSetIds = headerDataSetIds;
   }
 
+  public MergeSettings resultStorageLocation(StorageLocation resultStorageLocation) {
+    this.resultStorageLocation = resultStorageLocation;
+    return this;
+  }
+
+   /**
+   * The output location of the result files.
+   * @return resultStorageLocation
+  **/
+  @ApiModelProperty(example = "null", required = true, value = "The output location of the result files.")
+  public StorageLocation getResultStorageLocation() {
+    return resultStorageLocation;
+  }
+
+  public void setResultStorageLocation(StorageLocation resultStorageLocation) {
+    this.resultStorageLocation = resultStorageLocation;
+  }
+
   public MergeSettings templateVersion(Integer templateVersion) {
     this.templateVersion = templateVersion;
     return this;
@@ -223,24 +241,6 @@ public class MergeSettings {
 
   public void setTemplateVersion(Integer templateVersion) {
     this.templateVersion = templateVersion;
-  }
-
-  public MergeSettings resultStreamLocation(StreamLocation resultStreamLocation) {
-    this.resultStreamLocation = resultStreamLocation;
-    return this;
-  }
-
-   /**
-   * The output location of the result files.
-   * @return resultStreamLocation
-  **/
-  @ApiModelProperty(example = "null", required = true, value = "The output location of the result files.")
-  public StreamLocation getResultStreamLocation() {
-    return resultStreamLocation;
-  }
-
-  public void setResultStreamLocation(StreamLocation resultStreamLocation) {
-    this.resultStreamLocation = resultStreamLocation;
   }
 
   public MergeSettings templateId(String templateId) {
@@ -294,15 +294,15 @@ public class MergeSettings {
         Objects.equals(this.dataSetId, mergeSettings.dataSetId) &&
         Objects.equals(this.engine, mergeSettings.engine) &&
         Objects.equals(this.headerDataSetIds, mergeSettings.headerDataSetIds) &&
+        Objects.equals(this.resultStorageLocation, mergeSettings.resultStorageLocation) &&
         Objects.equals(this.templateVersion, mergeSettings.templateVersion) &&
-        Objects.equals(this.resultStreamLocation, mergeSettings.resultStreamLocation) &&
         Objects.equals(this.templateId, mergeSettings.templateId) &&
         Objects.equals(this.outputSettings, mergeSettings.outputSettings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lifecycle, mergeResult, dataSetId, engine, headerDataSetIds, templateVersion, resultStreamLocation, templateId, outputSettings);
+    return Objects.hash(lifecycle, mergeResult, dataSetId, engine, headerDataSetIds, resultStorageLocation, templateVersion, templateId, outputSettings);
   }
 
 
@@ -316,8 +316,8 @@ public class MergeSettings {
     sb.append("    dataSetId: ").append(toIndentedString(dataSetId)).append("\n");
     sb.append("    engine: ").append(toIndentedString(engine)).append("\n");
     sb.append("    headerDataSetIds: ").append(toIndentedString(headerDataSetIds)).append("\n");
+    sb.append("    resultStorageLocation: ").append(toIndentedString(resultStorageLocation)).append("\n");
     sb.append("    templateVersion: ").append(toIndentedString(templateVersion)).append("\n");
-    sb.append("    resultStreamLocation: ").append(toIndentedString(resultStreamLocation)).append("\n");
     sb.append("    templateId: ").append(toIndentedString(templateId)).append("\n");
     sb.append("    outputSettings: ").append(toIndentedString(outputSettings)).append("\n");
     sb.append("}");

@@ -1,4 +1,4 @@
-# OfficeTextMerge.MergeSettings
+# TemplateProcessor.MergeSettings
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **dataSetId** | **String** | Data set id | 
 **engine** | **String** |  | [optional] 
 **headerDataSetIds** | **[String]** | optional header data set ids | [optional] 
+**resultStorageLocation** | [**StorageLocation**](StorageLocation.md) | The output location of the result files. | 
 **templateVersion** | **Integer** | Template version | [optional] 
-**resultStreamLocation** | [**StreamLocation**](StreamLocation.md) | The output location of the result files. | 
 **templateId** | **String** | Template id | 
 **outputSettings** | [**OutputSettings**](OutputSettings.md) |  | 
 

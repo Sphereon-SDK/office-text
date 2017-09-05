@@ -1,7 +1,7 @@
 /* 
- * OfficeTextMerge
+ * Template-Processor
  *
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -98,14 +98,13 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MergeJob" /> class.
         /// </summary>
-        /// <param name="ResultFolderPath">The target folder path of result files.</param>
         /// <param name="JobId">The server generated job jobId. This jobId is checked against the jobId in the request path on every invocation (required).</param>
-        /// <param name="ResultContainerId">The target container id of result files.</param>
         /// <param name="DataSetId">Data set id.</param>
         /// <param name="ResultStreams">The storage locations of the result files. (required).</param>
         /// <param name="HeaderDataSetIds">Header data set ids.</param>
+        /// <param name="ResultStorageLocation">The storage location. (optional).</param>
         /// <param name="MergeSettings">MergeSettings.</param>
-        public MergeJob(string ResultFolderPath = null, string JobId = null, string ResultContainerId = null, string DataSetId = null, List<StreamLocation> ResultStreams = null, List<string> HeaderDataSetIds = null, MergeSettings MergeSettings = null)
+        public MergeJob(string JobId = null, string DataSetId = null, List<StreamLocation> ResultStreams = null, List<string> HeaderDataSetIds = null, StorageLocation ResultStorageLocation = null, MergeSettings MergeSettings = null)
         {
             // to ensure "JobId" is required (not null)
             if (JobId == null)
@@ -125,19 +124,12 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             {
                 this.ResultStreams = ResultStreams;
             }
-            this.ResultFolderPath = ResultFolderPath;
-            this.ResultContainerId = ResultContainerId;
             this.DataSetId = DataSetId;
             this.HeaderDataSetIds = HeaderDataSetIds;
+            this.ResultStorageLocation = ResultStorageLocation;
             this.MergeSettings = MergeSettings;
         }
         
-        /// <summary>
-        /// The target folder path of result files
-        /// </summary>
-        /// <value>The target folder path of result files</value>
-        [DataMember(Name="resultFolderPath", EmitDefaultValue=false)]
-        public string ResultFolderPath { get; set; }
         /// <summary>
         /// The completion date/time of this job in ISO 8601 format
         /// </summary>
@@ -150,12 +142,6 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         /// <value>The server generated job jobId. This jobId is checked against the jobId in the request path on every invocation</value>
         [DataMember(Name="jobId", EmitDefaultValue=false)]
         public string JobId { get; set; }
-        /// <summary>
-        /// The target container id of result files
-        /// </summary>
-        /// <value>The target container id of result files</value>
-        [DataMember(Name="resultContainerId", EmitDefaultValue=false)]
-        public string ResultContainerId { get; set; }
         /// <summary>
         /// The creation date/time of this job in ISO 8601 format
         /// </summary>
@@ -181,6 +167,12 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         [DataMember(Name="headerDataSetIds", EmitDefaultValue=false)]
         public List<string> HeaderDataSetIds { get; set; }
         /// <summary>
+        /// The storage location. (optional)
+        /// </summary>
+        /// <value>The storage location. (optional)</value>
+        [DataMember(Name="resultStorageLocation", EmitDefaultValue=false)]
+        public StorageLocation ResultStorageLocation { get; set; }
+        /// <summary>
         /// Gets or Sets MergeSettings
         /// </summary>
         [DataMember(Name="mergeSettings", EmitDefaultValue=false)]
@@ -199,14 +191,13 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         {
             var sb = new StringBuilder();
             sb.Append("class MergeJob {\n");
-            sb.Append("  ResultFolderPath: ").Append(ResultFolderPath).Append("\n");
             sb.Append("  CompletionTime: ").Append(CompletionTime).Append("\n");
             sb.Append("  JobId: ").Append(JobId).Append("\n");
-            sb.Append("  ResultContainerId: ").Append(ResultContainerId).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
             sb.Append("  DataSetId: ").Append(DataSetId).Append("\n");
             sb.Append("  ResultStreams: ").Append(ResultStreams).Append("\n");
             sb.Append("  HeaderDataSetIds: ").Append(HeaderDataSetIds).Append("\n");
+            sb.Append("  ResultStorageLocation: ").Append(ResultStorageLocation).Append("\n");
             sb.Append("  MergeSettings: ").Append(MergeSettings).Append("\n");
             sb.Append("  StatusMessage: ").Append(StatusMessage).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -247,11 +238,6 @@ namespace Sphereon.SDK.TemplateProcessor.Model
 
             return 
                 (
-                    this.ResultFolderPath == other.ResultFolderPath ||
-                    this.ResultFolderPath != null &&
-                    this.ResultFolderPath.Equals(other.ResultFolderPath)
-                ) && 
-                (
                     this.CompletionTime == other.CompletionTime ||
                     this.CompletionTime != null &&
                     this.CompletionTime.Equals(other.CompletionTime)
@@ -260,11 +246,6 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     this.JobId == other.JobId ||
                     this.JobId != null &&
                     this.JobId.Equals(other.JobId)
-                ) && 
-                (
-                    this.ResultContainerId == other.ResultContainerId ||
-                    this.ResultContainerId != null &&
-                    this.ResultContainerId.Equals(other.ResultContainerId)
                 ) && 
                 (
                     this.CreationTime == other.CreationTime ||
@@ -285,6 +266,11 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     this.HeaderDataSetIds == other.HeaderDataSetIds ||
                     this.HeaderDataSetIds != null &&
                     this.HeaderDataSetIds.SequenceEqual(other.HeaderDataSetIds)
+                ) && 
+                (
+                    this.ResultStorageLocation == other.ResultStorageLocation ||
+                    this.ResultStorageLocation != null &&
+                    this.ResultStorageLocation.Equals(other.ResultStorageLocation)
                 ) && 
                 (
                     this.MergeSettings == other.MergeSettings ||
@@ -314,14 +300,10 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.ResultFolderPath != null)
-                    hash = hash * 59 + this.ResultFolderPath.GetHashCode();
                 if (this.CompletionTime != null)
                     hash = hash * 59 + this.CompletionTime.GetHashCode();
                 if (this.JobId != null)
                     hash = hash * 59 + this.JobId.GetHashCode();
-                if (this.ResultContainerId != null)
-                    hash = hash * 59 + this.ResultContainerId.GetHashCode();
                 if (this.CreationTime != null)
                     hash = hash * 59 + this.CreationTime.GetHashCode();
                 if (this.DataSetId != null)
@@ -330,6 +312,8 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     hash = hash * 59 + this.ResultStreams.GetHashCode();
                 if (this.HeaderDataSetIds != null)
                     hash = hash * 59 + this.HeaderDataSetIds.GetHashCode();
+                if (this.ResultStorageLocation != null)
+                    hash = hash * 59 + this.ResultStorageLocation.GetHashCode();
                 if (this.MergeSettings != null)
                     hash = hash * 59 + this.MergeSettings.GetHashCode();
                 if (this.StatusMessage != null)

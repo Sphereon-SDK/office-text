@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-OfficeTextMerge
+Template-Processor
 
-<b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+<b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
 
 OpenAPI spec version: 0.1
 Contact: dev@sphereon.com
@@ -86,7 +86,7 @@ limitations under the License.
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\Sphereon.SDK.TemplateProcessor\Sphereon.SDK.TemplateProcessor.csproj">
-          <Project>{80B64299-4E8C-4A19-A669-65EC364D8526}</Project>
+          <Project>{19740E23-B4ED-43A1-9114-3B105C17313C}</Project>
           <Name>Sphereon.SDK.TemplateProcessor</Name>
       </ProjectReference>
   </ItemGroup>

@@ -1,6 +1,6 @@
 /**
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['SphereonTemplateProcessor/ApiClient', 'SphereonTemplateProcessor/model/MergeSettings', 'SphereonTemplateProcessor/model/StreamLocation'], factory);
+    define(['SphereonTemplateProcessor/ApiClient', 'SphereonTemplateProcessor/model/MergeSettings', 'SphereonTemplateProcessor/model/StorageLocation', 'SphereonTemplateProcessor/model/StreamLocation'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./MergeSettings'), require('./StreamLocation'));
+    module.exports = factory(require('../ApiClient'), require('./MergeSettings'), require('./StorageLocation'), require('./StreamLocation'));
   } else {
     // Browser globals (root is window)
-    if (!root.OfficeTextMerge) {
-      root.OfficeTextMerge = {};
+    if (!root.TemplateProcessor) {
+      root.TemplateProcessor = {};
     }
-    root.OfficeTextMerge.MergeJob = factory(root.OfficeTextMerge.ApiClient, root.OfficeTextMerge.MergeSettings, root.OfficeTextMerge.StreamLocation);
+    root.TemplateProcessor.MergeJob = factory(root.TemplateProcessor.ApiClient, root.TemplateProcessor.MergeSettings, root.TemplateProcessor.StorageLocation, root.TemplateProcessor.StreamLocation);
   }
-}(this, function(ApiClient, MergeSettings, StreamLocation) {
+}(this, function(ApiClient, MergeSettings, StorageLocation, StreamLocation) {
   'use strict';
 
 
@@ -61,12 +61,11 @@
     var _this = this;
 
 
-
     _this['jobId'] = jobId;
 
 
-
     _this['resultStreams'] = resultStreams;
+
 
 
 
@@ -84,17 +83,11 @@
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('resultFolderPath')) {
-        obj['resultFolderPath'] = ApiClient.convertToType(data['resultFolderPath'], 'String');
-      }
       if (data.hasOwnProperty('completionTime')) {
         obj['completionTime'] = ApiClient.convertToType(data['completionTime'], 'Date');
       }
       if (data.hasOwnProperty('jobId')) {
         obj['jobId'] = ApiClient.convertToType(data['jobId'], 'String');
-      }
-      if (data.hasOwnProperty('resultContainerId')) {
-        obj['resultContainerId'] = ApiClient.convertToType(data['resultContainerId'], 'String');
       }
       if (data.hasOwnProperty('creationTime')) {
         obj['creationTime'] = ApiClient.convertToType(data['creationTime'], 'Date');
@@ -107,6 +100,9 @@
       }
       if (data.hasOwnProperty('headerDataSetIds')) {
         obj['headerDataSetIds'] = ApiClient.convertToType(data['headerDataSetIds'], ['String']);
+      }
+      if (data.hasOwnProperty('resultStorageLocation')) {
+        obj['resultStorageLocation'] = StorageLocation.constructFromObject(data['resultStorageLocation']);
       }
       if (data.hasOwnProperty('mergeSettings')) {
         obj['mergeSettings'] = MergeSettings.constructFromObject(data['mergeSettings']);
@@ -122,11 +118,6 @@
   }
 
   /**
-   * The target folder path of result files
-   * @member {String} resultFolderPath
-   */
-  exports.prototype['resultFolderPath'] = undefined;
-  /**
    * The completion date/time of this job in ISO 8601 format
    * @member {Date} completionTime
    */
@@ -136,11 +127,6 @@
    * @member {String} jobId
    */
   exports.prototype['jobId'] = undefined;
-  /**
-   * The target container id of result files
-   * @member {String} resultContainerId
-   */
-  exports.prototype['resultContainerId'] = undefined;
   /**
    * The creation date/time of this job in ISO 8601 format
    * @member {Date} creationTime
@@ -161,6 +147,11 @@
    * @member {Array.<String>} headerDataSetIds
    */
   exports.prototype['headerDataSetIds'] = undefined;
+  /**
+   * The storage location. (optional)
+   * @member {module:SphereonTemplateProcessor/model/StorageLocation} resultStorageLocation
+   */
+  exports.prototype['resultStorageLocation'] = undefined;
   /**
    * @member {module:SphereonTemplateProcessor/model/MergeSettings} mergeSettings
    */

@@ -1,4 +1,4 @@
-# OfficeTextMerge.MergeJobResponse
+# TemplateProcessor.MergeJobResponse
 
 ## Properties
 Name | Type | Description | Notes

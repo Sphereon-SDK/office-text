@@ -1,6 +1,6 @@
 /**
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -31,10 +31,10 @@
     module.exports = factory(require('../ApiClient'), require('./Error'));
   } else {
     // Browser globals (root is window)
-    if (!root.OfficeTextMerge) {
-      root.OfficeTextMerge = {};
+    if (!root.TemplateProcessor) {
+      root.TemplateProcessor = {};
     }
-    root.OfficeTextMerge.ErrorResponse = factory(root.OfficeTextMerge.ApiClient, root.OfficeTextMerge.Error);
+    root.TemplateProcessor.ErrorResponse = factory(root.TemplateProcessor.ApiClient, root.TemplateProcessor.Error);
   }
 }(this, function(ApiClient, Error) {
   'use strict';

@@ -1,6 +1,6 @@
 /**
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['SphereonTemplateProcessor/ApiClient', 'SphereonTemplateProcessor/model/Lifecycle', 'SphereonTemplateProcessor/model/OutputSettings', 'SphereonTemplateProcessor/model/StreamLocation'], factory);
+    define(['SphereonTemplateProcessor/ApiClient', 'SphereonTemplateProcessor/model/Lifecycle', 'SphereonTemplateProcessor/model/OutputSettings', 'SphereonTemplateProcessor/model/StorageLocation'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./Lifecycle'), require('./OutputSettings'), require('./StreamLocation'));
+    module.exports = factory(require('../ApiClient'), require('./Lifecycle'), require('./OutputSettings'), require('./StorageLocation'));
   } else {
     // Browser globals (root is window)
-    if (!root.OfficeTextMerge) {
-      root.OfficeTextMerge = {};
+    if (!root.TemplateProcessor) {
+      root.TemplateProcessor = {};
     }
-    root.OfficeTextMerge.MergeSettings = factory(root.OfficeTextMerge.ApiClient, root.OfficeTextMerge.Lifecycle, root.OfficeTextMerge.OutputSettings, root.OfficeTextMerge.StreamLocation);
+    root.TemplateProcessor.MergeSettings = factory(root.TemplateProcessor.ApiClient, root.TemplateProcessor.Lifecycle, root.TemplateProcessor.OutputSettings, root.TemplateProcessor.StorageLocation);
   }
-}(this, function(ApiClient, Lifecycle, OutputSettings, StreamLocation) {
+}(this, function(ApiClient, Lifecycle, OutputSettings, StorageLocation) {
   'use strict';
 
 
@@ -54,11 +54,11 @@
    * @alias module:SphereonTemplateProcessor/model/MergeSettings
    * @class
    * @param dataSetId {String} Data set id
-   * @param resultStreamLocation {module:SphereonTemplateProcessor/model/StreamLocation} The output location of the result files.
+   * @param resultStorageLocation {module:SphereonTemplateProcessor/model/StorageLocation} The output location of the result files.
    * @param templateId {String} Template id
    * @param outputSettings {module:SphereonTemplateProcessor/model/OutputSettings} 
    */
-  var exports = function(dataSetId, resultStreamLocation, templateId, outputSettings) {
+  var exports = function(dataSetId, resultStorageLocation, templateId, outputSettings) {
     var _this = this;
 
 
@@ -66,8 +66,8 @@
     _this['dataSetId'] = dataSetId;
 
 
+    _this['resultStorageLocation'] = resultStorageLocation;
 
-    _this['resultStreamLocation'] = resultStreamLocation;
     _this['templateId'] = templateId;
     _this['outputSettings'] = outputSettings;
   };
@@ -98,11 +98,11 @@
       if (data.hasOwnProperty('headerDataSetIds')) {
         obj['headerDataSetIds'] = ApiClient.convertToType(data['headerDataSetIds'], ['String']);
       }
+      if (data.hasOwnProperty('resultStorageLocation')) {
+        obj['resultStorageLocation'] = StorageLocation.constructFromObject(data['resultStorageLocation']);
+      }
       if (data.hasOwnProperty('templateVersion')) {
         obj['templateVersion'] = ApiClient.convertToType(data['templateVersion'], 'Integer');
-      }
-      if (data.hasOwnProperty('resultStreamLocation')) {
-        obj['resultStreamLocation'] = StreamLocation.constructFromObject(data['resultStreamLocation']);
       }
       if (data.hasOwnProperty('templateId')) {
         obj['templateId'] = ApiClient.convertToType(data['templateId'], 'String');
@@ -137,15 +137,15 @@
    */
   exports.prototype['headerDataSetIds'] = undefined;
   /**
+   * The output location of the result files.
+   * @member {module:SphereonTemplateProcessor/model/StorageLocation} resultStorageLocation
+   */
+  exports.prototype['resultStorageLocation'] = undefined;
+  /**
    * Template version
    * @member {Integer} templateVersion
    */
   exports.prototype['templateVersion'] = undefined;
-  /**
-   * The output location of the result files.
-   * @member {module:SphereonTemplateProcessor/model/StreamLocation} resultStreamLocation
-   */
-  exports.prototype['resultStreamLocation'] = undefined;
   /**
    * Template id
    * @member {String} templateId

@@ -1,4 +1,4 @@
-# OfficeTextMerge.Lifecycle
+# TemplateProcessor.Lifecycle
 
 ## Properties
 Name | Type | Description | Notes

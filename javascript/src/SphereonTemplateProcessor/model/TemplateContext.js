@@ -1,6 +1,6 @@
 /**
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -25,18 +25,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['SphereonTemplateProcessor/ApiClient', 'SphereonTemplateProcessor/model/OwnerInfo', 'SphereonTemplateProcessor/model/StreamLocation'], factory);
+    define(['SphereonTemplateProcessor/ApiClient', 'SphereonTemplateProcessor/model/OwnerInfo', 'SphereonTemplateProcessor/model/StorageLocation', 'SphereonTemplateProcessor/model/StreamLocation'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('./OwnerInfo'), require('./StreamLocation'));
+    module.exports = factory(require('../ApiClient'), require('./OwnerInfo'), require('./StorageLocation'), require('./StreamLocation'));
   } else {
     // Browser globals (root is window)
-    if (!root.OfficeTextMerge) {
-      root.OfficeTextMerge = {};
+    if (!root.TemplateProcessor) {
+      root.TemplateProcessor = {};
     }
-    root.OfficeTextMerge.TemplateContext = factory(root.OfficeTextMerge.ApiClient, root.OfficeTextMerge.OwnerInfo, root.OfficeTextMerge.StreamLocation);
+    root.TemplateProcessor.TemplateContext = factory(root.TemplateProcessor.ApiClient, root.TemplateProcessor.OwnerInfo, root.TemplateProcessor.StorageLocation, root.TemplateProcessor.StreamLocation);
   }
-}(this, function(ApiClient, OwnerInfo, StreamLocation) {
+}(this, function(ApiClient, OwnerInfo, StorageLocation, StreamLocation) {
   'use strict';
 
 
@@ -58,6 +58,7 @@
     var _this = this;
 
     _this['templateType'] = templateType;
+
 
 
 
@@ -88,6 +89,9 @@
       if (data.hasOwnProperty('ownerInfo')) {
         obj['ownerInfo'] = OwnerInfo.constructFromObject(data['ownerInfo']);
       }
+      if (data.hasOwnProperty('storageLocation')) {
+        obj['storageLocation'] = StorageLocation.constructFromObject(data['storageLocation']);
+      }
       if (data.hasOwnProperty('id')) {
         obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
@@ -116,6 +120,11 @@
    * @member {module:SphereonTemplateProcessor/model/OwnerInfo} ownerInfo
    */
   exports.prototype['ownerInfo'] = undefined;
+  /**
+   * The storage location. (optional)
+   * @member {module:SphereonTemplateProcessor/model/StorageLocation} storageLocation
+   */
+  exports.prototype['storageLocation'] = undefined;
   /**
    * @member {String} id
    */

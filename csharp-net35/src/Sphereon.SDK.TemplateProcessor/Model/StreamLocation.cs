@@ -1,7 +1,7 @@
 /* 
- * OfficeTextMerge
+ * Template-Processor
  *
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -44,14 +44,14 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         /// </summary>
         /// <param name="FolderPath">FolderPath.</param>
         /// <param name="OriginalFileName">OriginalFileName.</param>
+        /// <param name="FileName">FileName.</param>
         /// <param name="ContainerId">ContainerId.</param>
-        /// <param name="FileId">FileId.</param>
-        public StreamLocation(string FolderPath = null, string OriginalFileName = null, string ContainerId = null, string FileId = null)
+        public StreamLocation(string FolderPath = null, string OriginalFileName = null, string FileName = null, string ContainerId = null)
         {
             this.FolderPath = FolderPath;
             this.OriginalFileName = OriginalFileName;
+            this.FileName = FileName;
             this.ContainerId = ContainerId;
-            this.FileId = FileId;
         }
         
         /// <summary>
@@ -65,15 +65,15 @@ namespace Sphereon.SDK.TemplateProcessor.Model
         [DataMember(Name="originalFileName", EmitDefaultValue=false)]
         public string OriginalFileName { get; set; }
         /// <summary>
+        /// Gets or Sets FileName
+        /// </summary>
+        [DataMember(Name="fileName", EmitDefaultValue=false)]
+        public string FileName { get; set; }
+        /// <summary>
         /// Gets or Sets ContainerId
         /// </summary>
         [DataMember(Name="containerId", EmitDefaultValue=false)]
         public string ContainerId { get; set; }
-        /// <summary>
-        /// Gets or Sets FileId
-        /// </summary>
-        [DataMember(Name="fileId", EmitDefaultValue=false)]
-        public string FileId { get; set; }
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -84,8 +84,8 @@ namespace Sphereon.SDK.TemplateProcessor.Model
             sb.Append("class StreamLocation {\n");
             sb.Append("  FolderPath: ").Append(FolderPath).Append("\n");
             sb.Append("  OriginalFileName: ").Append(OriginalFileName).Append("\n");
+            sb.Append("  FileName: ").Append(FileName).Append("\n");
             sb.Append("  ContainerId: ").Append(ContainerId).Append("\n");
-            sb.Append("  FileId: ").Append(FileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -133,14 +133,14 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     this.OriginalFileName.Equals(other.OriginalFileName)
                 ) && 
                 (
+                    this.FileName == other.FileName ||
+                    this.FileName != null &&
+                    this.FileName.Equals(other.FileName)
+                ) && 
+                (
                     this.ContainerId == other.ContainerId ||
                     this.ContainerId != null &&
                     this.ContainerId.Equals(other.ContainerId)
-                ) && 
-                (
-                    this.FileId == other.FileId ||
-                    this.FileId != null &&
-                    this.FileId.Equals(other.FileId)
                 );
         }
 
@@ -159,10 +159,10 @@ namespace Sphereon.SDK.TemplateProcessor.Model
                     hash = hash * 59 + this.FolderPath.GetHashCode();
                 if (this.OriginalFileName != null)
                     hash = hash * 59 + this.OriginalFileName.GetHashCode();
+                if (this.FileName != null)
+                    hash = hash * 59 + this.FileName.GetHashCode();
                 if (this.ContainerId != null)
                     hash = hash * 59 + this.ContainerId.GetHashCode();
-                if (this.FileId != null)
-                    hash = hash * 59 + this.FileId.GetHashCode();
                 return hash;
             }
         }

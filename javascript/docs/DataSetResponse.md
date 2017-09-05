@@ -1,4 +1,4 @@
-# OfficeTextMerge.DataSetResponse
+# TemplateProcessor.DataSetResponse
 
 ## Properties
 Name | Type | Description | Notes

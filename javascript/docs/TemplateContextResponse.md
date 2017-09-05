@@ -1,4 +1,4 @@
-# OfficeTextMerge.TemplateContextResponse
+# TemplateProcessor.TemplateContextResponse
 
 ## Properties
 Name | Type | Description | Notes

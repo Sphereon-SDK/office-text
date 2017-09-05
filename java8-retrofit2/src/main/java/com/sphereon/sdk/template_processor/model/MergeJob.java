@@ -1,6 +1,6 @@
 /*
- * OfficeTextMerge
- * <b>The Office Text API can generate office documents from a template and a JSON data file<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+ * Template-Processor
+ * <b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
  *
  * OpenAPI spec version: 0.1
  * Contact: dev@sphereon.com
@@ -28,6 +28,7 @@ package com.sphereon.sdk.template_processor.model;
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import com.sphereon.sdk.template_processor.model.MergeSettings;
+import com.sphereon.sdk.template_processor.model.StorageLocation;
 import com.sphereon.sdk.template_processor.model.StreamLocation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -39,19 +40,13 @@ import java.util.List;
  * The merge job. Has access to the job merge data.
  */
 @ApiModel(description = "The merge job. Has access to the job merge data.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-07-28T16:30:12.470+02:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:54.103+02:00")
 public class MergeJob {
-  @SerializedName("resultFolderPath")
-  private String resultFolderPath = null;
-
   @SerializedName("completionTime")
   private OffsetDateTime completionTime = null;
 
   @SerializedName("jobId")
   private String jobId = null;
-
-  @SerializedName("resultContainerId")
-  private String resultContainerId = null;
 
   @SerializedName("creationTime")
   private OffsetDateTime creationTime = null;
@@ -64,6 +59,9 @@ public class MergeJob {
 
   @SerializedName("headerDataSetIds")
   private List<String> headerDataSetIds = new ArrayList<String>();
+
+  @SerializedName("resultStorageLocation")
+  private StorageLocation resultStorageLocation = null;
 
   @SerializedName("mergeSettings")
   private MergeSettings mergeSettings = null;
@@ -108,24 +106,6 @@ public class MergeJob {
   @SerializedName("status")
   private StatusEnum status = null;
 
-  public MergeJob resultFolderPath(String resultFolderPath) {
-    this.resultFolderPath = resultFolderPath;
-    return this;
-  }
-
-   /**
-   * The target folder path of result files
-   * @return resultFolderPath
-  **/
-  @ApiModelProperty(example = "null", value = "The target folder path of result files")
-  public String getResultFolderPath() {
-    return resultFolderPath;
-  }
-
-  public void setResultFolderPath(String resultFolderPath) {
-    this.resultFolderPath = resultFolderPath;
-  }
-
    /**
    * The completion date/time of this job in ISO 8601 format
    * @return completionTime
@@ -151,24 +131,6 @@ public class MergeJob {
 
   public void setJobId(String jobId) {
     this.jobId = jobId;
-  }
-
-  public MergeJob resultContainerId(String resultContainerId) {
-    this.resultContainerId = resultContainerId;
-    return this;
-  }
-
-   /**
-   * The target container id of result files
-   * @return resultContainerId
-  **/
-  @ApiModelProperty(example = "null", value = "The target container id of result files")
-  public String getResultContainerId() {
-    return resultContainerId;
-  }
-
-  public void setResultContainerId(String resultContainerId) {
-    this.resultContainerId = resultContainerId;
   }
 
    /**
@@ -244,6 +206,24 @@ public class MergeJob {
     this.headerDataSetIds = headerDataSetIds;
   }
 
+  public MergeJob resultStorageLocation(StorageLocation resultStorageLocation) {
+    this.resultStorageLocation = resultStorageLocation;
+    return this;
+  }
+
+   /**
+   * The storage location. (optional)
+   * @return resultStorageLocation
+  **/
+  @ApiModelProperty(example = "null", value = "The storage location. (optional)")
+  public StorageLocation getResultStorageLocation() {
+    return resultStorageLocation;
+  }
+
+  public void setResultStorageLocation(StorageLocation resultStorageLocation) {
+    this.resultStorageLocation = resultStorageLocation;
+  }
+
   public MergeJob mergeSettings(MergeSettings mergeSettings) {
     this.mergeSettings = mergeSettings;
     return this;
@@ -290,14 +270,13 @@ public class MergeJob {
       return false;
     }
     MergeJob mergeJob = (MergeJob) o;
-    return Objects.equals(this.resultFolderPath, mergeJob.resultFolderPath) &&
-        Objects.equals(this.completionTime, mergeJob.completionTime) &&
+    return Objects.equals(this.completionTime, mergeJob.completionTime) &&
         Objects.equals(this.jobId, mergeJob.jobId) &&
-        Objects.equals(this.resultContainerId, mergeJob.resultContainerId) &&
         Objects.equals(this.creationTime, mergeJob.creationTime) &&
         Objects.equals(this.dataSetId, mergeJob.dataSetId) &&
         Objects.equals(this.resultStreams, mergeJob.resultStreams) &&
         Objects.equals(this.headerDataSetIds, mergeJob.headerDataSetIds) &&
+        Objects.equals(this.resultStorageLocation, mergeJob.resultStorageLocation) &&
         Objects.equals(this.mergeSettings, mergeJob.mergeSettings) &&
         Objects.equals(this.statusMessage, mergeJob.statusMessage) &&
         Objects.equals(this.status, mergeJob.status);
@@ -305,7 +284,7 @@ public class MergeJob {
 
   @Override
   public int hashCode() {
-    return Objects.hash(resultFolderPath, completionTime, jobId, resultContainerId, creationTime, dataSetId, resultStreams, headerDataSetIds, mergeSettings, statusMessage, status);
+    return Objects.hash(completionTime, jobId, creationTime, dataSetId, resultStreams, headerDataSetIds, resultStorageLocation, mergeSettings, statusMessage, status);
   }
 
 
@@ -314,14 +293,13 @@ public class MergeJob {
     StringBuilder sb = new StringBuilder();
     sb.append("class MergeJob {\n");
     
-    sb.append("    resultFolderPath: ").append(toIndentedString(resultFolderPath)).append("\n");
     sb.append("    completionTime: ").append(toIndentedString(completionTime)).append("\n");
     sb.append("    jobId: ").append(toIndentedString(jobId)).append("\n");
-    sb.append("    resultContainerId: ").append(toIndentedString(resultContainerId)).append("\n");
     sb.append("    creationTime: ").append(toIndentedString(creationTime)).append("\n");
     sb.append("    dataSetId: ").append(toIndentedString(dataSetId)).append("\n");
     sb.append("    resultStreams: ").append(toIndentedString(resultStreams)).append("\n");
     sb.append("    headerDataSetIds: ").append(toIndentedString(headerDataSetIds)).append("\n");
+    sb.append("    resultStorageLocation: ").append(toIndentedString(resultStorageLocation)).append("\n");
     sb.append("    mergeSettings: ").append(toIndentedString(mergeSettings)).append("\n");
     sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

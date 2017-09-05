@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **dataSetId** | **String** | Data set id | 
 **engine** | [**EngineEnum**](#EngineEnum) |  |  [optional]
 **headerDataSetIds** | **List&lt;String&gt;** | optional header data set ids |  [optional]
+**resultStorageLocation** | [**StorageLocation**](StorageLocation.md) | The output location of the result files. | 
 **templateVersion** | **Integer** | Template version |  [optional]
-**resultStreamLocation** | [**StreamLocation**](StreamLocation.md) | The output location of the result files. | 
 **templateId** | **String** | Template id | 
 **outputSettings** | [**OutputSettings**](OutputSettings.md) |  | 
 
