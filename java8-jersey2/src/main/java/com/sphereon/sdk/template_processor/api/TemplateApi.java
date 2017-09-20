@@ -7,18 +7,18 @@ import com.sphereon.sdk.template_processor.handler.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContext;
 import java.io.File;
+import com.sphereon.sdk.template_processor.model.TemplateContext;
+import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:31.439+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-20T13:28:35.968+02:00")
 public class TemplateApi {
   private ApiClient apiClient;
 
@@ -54,7 +54,7 @@ public class TemplateApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/templates";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -95,7 +95,7 @@ public class TemplateApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates/{templateId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/templates/{templateId}"
       .replaceAll("\\{" + "templateId" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params
@@ -137,7 +137,7 @@ public class TemplateApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates/{templateId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/templates/{templateId}"
       .replaceAll("\\{" + "templateId" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params
@@ -179,7 +179,7 @@ public class TemplateApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/templates";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -226,7 +226,7 @@ public class TemplateApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates/{templateId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/templates/{templateId}"
       .replaceAll("\\{" + "templateId" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params

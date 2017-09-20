@@ -1,12 +1,12 @@
 # TemplateProcessor.JobApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getJob**](JobApi.md#getJob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
 [**getJobs**](JobApi.md#getJobs) | **GET** /template/processor/0.1/jobs | Get all jobs
-[**getResultStreamById**](JobApi.md#getResultStreamById) | **PUT** /template/processor/0.1/jobs/{jobId}/result/file/{streamId} | Get the result file
+[**getResultStream**](JobApi.md#getResultStream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
 [**getResultStreamsAsContainer**](JobApi.md#getResultStreamsAsContainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
 [**submitJob**](JobApi.md#submitJob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
 
@@ -22,7 +22,7 @@ Get the merge job definition and current state. Please not that you can differen
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -73,7 +73,7 @@ Get all office text job definitions and their current state.
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -114,9 +114,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json;charset=UTF-8
 
-<a name="getResultStreamById"></a>
-# **getResultStreamById**
-> &#39;String&#39; getResultStreamById(jobId, streamId, opts)
+<a name="getResultStream"></a>
+# **getResultStream**
+> &#39;Blob&#39; getResultStream(jobId, resultStreamRequest)
 
 Get the result file
 
@@ -125,7 +125,7 @@ Get a merge result document as a binary stream.
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -135,11 +135,8 @@ var apiInstance = new TemplateProcessor.JobApi();
 
 var jobId = "jobId_example"; // String | jobId
 
-var streamId = "streamId_example"; // String | streamId
+var resultStreamRequest = new TemplateProcessor.ResultStreamRequest(); // ResultStreamRequest | resultStreamRequest
 
-var opts = { 
-  'outputSettings': new TemplateProcessor.OutputSettings() // OutputSettings | outputSettings
-};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -148,7 +145,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.getResultStreamById(jobId, streamId, opts, callback);
+apiInstance.getResultStream(jobId, resultStreamRequest, callback);
 ```
 
 ### Parameters
@@ -156,12 +153,11 @@ apiInstance.getResultStreamById(jobId, streamId, opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **jobId** | **String**| jobId | 
- **streamId** | **String**| streamId | 
- **outputSettings** | [**OutputSettings**](OutputSettings.md)| outputSettings | [optional] 
+ **resultStreamRequest** | [**ResultStreamRequest**](ResultStreamRequest.md)| resultStreamRequest | 
 
 ### Return type
 
-**&#39;String&#39;**
+**&#39;Blob&#39;**
 
 ### Authorization
 
@@ -174,7 +170,7 @@ Name | Type | Description  | Notes
 
 <a name="getResultStreamsAsContainer"></a>
 # **getResultStreamsAsContainer**
-> &#39;String&#39; getResultStreamsAsContainer(jobId, opts)
+> &#39;Blob&#39; getResultStreamsAsContainer(jobId, opts)
 
 Get the result file
 
@@ -183,7 +179,7 @@ Get all documents inside a compressed container as a binary stream.
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -216,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**&#39;String&#39;**
+**&#39;Blob&#39;**
 
 ### Authorization
 
@@ -238,7 +234,7 @@ Submit merge job run.
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];

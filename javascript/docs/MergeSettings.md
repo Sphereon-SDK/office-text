@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **engine** | **String** |  | [optional] 
 **headerDataSetIds** | **[String]** | optional header data set ids | [optional] 
 **resultStorageLocation** | [**StorageLocation**](StorageLocation.md) | The output location of the result files. | 
-**templateVersion** | **Integer** | Template version | [optional] 
+**templateVersion** | **Number** | Template version | [optional] 
 **templateId** | **String** | Template id | 
 **outputSettings** | [**OutputSettings**](OutputSettings.md) |  | 
 

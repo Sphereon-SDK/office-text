@@ -1,12 +1,12 @@
 # Sphereon.SDK.TemplateProcessor.Api.JobApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetJob**](JobApi.md#getjob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
 [**GetJobs**](JobApi.md#getjobs) | **GET** /template/processor/0.1/jobs | Get all jobs
-[**GetResultStreamById**](JobApi.md#getresultstreambyid) | **PUT** /template/processor/0.1/jobs/{jobId}/result/file/{streamId} | Get the result file
+[**GetResultStream**](JobApi.md#getresultstream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
 [**GetResultStreamsAsContainer**](JobApi.md#getresultstreamsascontainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
 [**SubmitJob**](JobApi.md#submitjob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
 
@@ -33,7 +33,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -98,7 +97,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -124,7 +122,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**List<string>**](string.md)| A list of status to filter on. | [optional] 
+ **status** | [**List&lt;string&gt;**](string.md)| A list of status to filter on. | [optional] 
 
 ### Return type
 
@@ -141,9 +139,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getresultstreambyid"></a>
-# **GetResultStreamById**
-> byte[] GetResultStreamById (string jobId, string streamId, OutputSettings outputSettings = null)
+<a name="getresultstream"></a>
+# **GetResultStream**
+> byte[] GetResultStream (string jobId, ResultStreamRequest resultStreamRequest)
 
 Get the result file
 
@@ -159,28 +157,26 @@ using Sphereon.SDK.TemplateProcessor.Model;
 
 namespace Example
 {
-    public class GetResultStreamByIdExample
+    public class GetResultStreamExample
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new JobApi();
             var jobId = jobId_example;  // string | jobId
-            var streamId = streamId_example;  // string | streamId
-            var outputSettings = new OutputSettings(); // OutputSettings | outputSettings (optional) 
+            var resultStreamRequest = new ResultStreamRequest(); // ResultStreamRequest | resultStreamRequest
 
             try
             {
                 // Get the result file
-                byte[] result = apiInstance.GetResultStreamById(jobId, streamId, outputSettings);
+                byte[] result = apiInstance.GetResultStream(jobId, resultStreamRequest);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling JobApi.GetResultStreamById: " + e.Message );
+                Debug.Print("Exception when calling JobApi.GetResultStream: " + e.Message );
             }
         }
     }
@@ -192,8 +188,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **jobId** | **string**| jobId | 
- **streamId** | **string**| streamId | 
- **outputSettings** | [**OutputSettings**](OutputSettings.md)| outputSettings | [optional] 
+ **resultStreamRequest** | [**ResultStreamRequest**](ResultStreamRequest.md)| resultStreamRequest | 
 
 ### Return type
 
@@ -232,7 +227,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -299,7 +293,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 

@@ -1,12 +1,12 @@
 # JobApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getJob**](JobApi.md#getJob) | **GET** template/processor/0.1/jobs/{jobId} | Job definition and state
 [**getJobs**](JobApi.md#getJobs) | **GET** template/processor/0.1/jobs | Get all jobs
-[**getResultStreamById**](JobApi.md#getResultStreamById) | **PUT** template/processor/0.1/jobs/{jobId}/result/file/{streamId} | Get the result file
+[**getResultStream**](JobApi.md#getResultStream) | **PUT** template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
 [**getResultStreamsAsContainer**](JobApi.md#getResultStreamsAsContainer) | **PUT** template/processor/0.1/jobs/{jobId}/result/container | Get the result file
 [**submitJob**](JobApi.md#submitJob) | **PUT** template/processor/0.1/jobs | Submit merge job for processing
 
@@ -117,9 +117,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json;charset=UTF-8
 
-<a name="getResultStreamById"></a>
-# **getResultStreamById**
-> byte[] getResultStreamById(jobId, streamId, outputSettings)
+<a name="getResultStream"></a>
+# **getResultStream**
+> byte[] getResultStream(jobId, resultStreamRequest)
 
 Get the result file
 
@@ -142,13 +142,12 @@ oauth2schema.setAccessToken("YOUR ACCESS TOKEN");
 
 JobApi apiInstance = new JobApi();
 String jobId = "jobId_example"; // String | jobId
-String streamId = "streamId_example"; // String | streamId
-OutputSettings outputSettings = new OutputSettings(); // OutputSettings | outputSettings
+ResultStreamRequest resultStreamRequest = new ResultStreamRequest(); // ResultStreamRequest | resultStreamRequest
 try {
-    byte[] result = apiInstance.getResultStreamById(jobId, streamId, outputSettings);
+    byte[] result = apiInstance.getResultStream(jobId, resultStreamRequest);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling JobApi#getResultStreamById");
+    System.err.println("Exception when calling JobApi#getResultStream");
     e.printStackTrace();
 }
 ```
@@ -158,8 +157,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **jobId** | **String**| jobId |
- **streamId** | **String**| streamId |
- **outputSettings** | [**OutputSettings**](OutputSettings.md)| outputSettings | [optional]
+ **resultStreamRequest** | [**ResultStreamRequest**](ResultStreamRequest.md)| resultStreamRequest |
 
 ### Return type
 

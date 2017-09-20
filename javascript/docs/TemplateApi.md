@@ -1,6 +1,6 @@
 # TemplateProcessor.TemplateApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,7 +22,7 @@ Create a unique template context for your environment
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -73,7 +73,7 @@ Delete a template context with all history
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -124,7 +124,7 @@ Get an existing template context
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -175,7 +175,7 @@ Update an existing template context for your environment
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -226,7 +226,7 @@ Upload the Office template file
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];

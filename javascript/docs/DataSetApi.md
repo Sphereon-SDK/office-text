@@ -1,6 +1,6 @@
 # TemplateProcessor.DataSetApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,7 +19,7 @@ Upload and store a data set. Currently only JSON is supported. This call returns
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];
@@ -70,7 +70,7 @@ Delete a stored data set
 ### Example
 ```javascript
 var TemplateProcessor = require('template_processor');
-var defaultClient = TemplateProcessor.ApiClient.default;
+var defaultClient = TemplateProcessor.ApiClient.instance;
 
 // Configure OAuth2 access token for authorization: oauth2schema
 var oauth2schema = defaultClient.authentications['oauth2schema'];

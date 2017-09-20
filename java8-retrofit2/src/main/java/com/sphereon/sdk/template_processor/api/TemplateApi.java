@@ -3,21 +3,23 @@ package com.sphereon.sdk.template_processor.api;
 import com.sphereon.sdk.template_processor.handler.CollectionFormats.*;
 
 
+
 import retrofit2.Call;
 import retrofit2.http.*;
 
 import okhttp3.RequestBody;
 
-import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContext;
 import java.io.File;
+import com.sphereon.sdk.template_processor.model.TemplateContext;
+import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public interface TemplateApi {
   /**
@@ -26,9 +28,8 @@ public interface TemplateApi {
    * @param templateRequest The template request (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @POST("template/processor/0.1/templates")
   Call<TemplateContextResponse> createTemplateContext(
@@ -41,9 +42,8 @@ public interface TemplateApi {
    * @param templateId templateId (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @DELETE("template/processor/0.1/templates/{templateId}")
   Call<TemplateContextResponse> deleteTemplateContext(
@@ -56,9 +56,8 @@ public interface TemplateApi {
    * @param templateId The template context name unique for your environment (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @GET("template/processor/0.1/templates/{templateId}")
   Call<TemplateContextResponse> getTemplateContext(
@@ -71,9 +70,8 @@ public interface TemplateApi {
    * @param templateContext templateContext (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @PUT("template/processor/0.1/templates")
   Call<TemplateContextResponse> updateTemplateContext(
@@ -87,7 +85,6 @@ public interface TemplateApi {
    * @param stream The template (file/inputstream) to store (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @retrofit2.http.Multipart
   @POST("template/processor/0.1/templates/{templateId}")
   Call<TemplateContextResponse> uploadTemplateFile(

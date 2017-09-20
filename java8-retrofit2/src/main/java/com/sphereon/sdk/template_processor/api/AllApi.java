@@ -3,6 +3,7 @@ package com.sphereon.sdk.template_processor.api;
 import com.sphereon.sdk.template_processor.handler.CollectionFormats.*;
 
 
+
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -10,18 +11,20 @@ import okhttp3.RequestBody;
 
 import com.sphereon.sdk.template_processor.model.DataSetResponse;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
-import com.sphereon.sdk.template_processor.model.MergeJobResponse;
-import com.sphereon.sdk.template_processor.model.OutputSettings;
-import com.sphereon.sdk.template_processor.model.MergeSettings;
-import com.sphereon.sdk.template_processor.model.TemplateContext;
 import java.io.File;
+import com.sphereon.sdk.template_processor.model.MergeJobResponse;
+import com.sphereon.sdk.template_processor.model.MergeSettings;
+import com.sphereon.sdk.template_processor.model.OutputSettings;
+import com.sphereon.sdk.template_processor.model.ResultStreamRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContext;
+import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public interface AllApi {
   /**
@@ -30,9 +33,8 @@ public interface AllApi {
    * @param payload The dates for the merge [   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   },   {     \&quot;Field1\&quot;: \&quot;Field1 value\&quot;,     \&quot;Field2\&quot;: \&quot;Field2 value\&quot;,   } ] (required)
    * @return Call&lt;DataSetResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @POST("template/processor/0.1/datasets")
   Call<DataSetResponse> createDataSet(
@@ -45,9 +47,8 @@ public interface AllApi {
    * @param templateRequest The template request (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @POST("template/processor/0.1/templates")
   Call<TemplateContextResponse> createTemplateContext(
@@ -60,9 +61,8 @@ public interface AllApi {
    * @param dataSetId dataSetId (required)
    * @return Call&lt;DataSetResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @DELETE("template/processor/0.1/datasets/{dataSetId}")
   Call<DataSetResponse> deleteDataSet(
@@ -75,9 +75,8 @@ public interface AllApi {
    * @param jobId jobId (required)
    * @return Call&lt;MergeJobResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @DELETE("template/processor/0.1/jobs/{jobId}")
   Call<MergeJobResponse> deleteJob(
@@ -90,9 +89,8 @@ public interface AllApi {
    * @param templateId templateId (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @DELETE("template/processor/0.1/templates/{templateId}")
   Call<TemplateContextResponse> deleteTemplateContext(
@@ -105,9 +103,8 @@ public interface AllApi {
    * @param jobId jobId (required)
    * @return Call&lt;MergeJobResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @GET("template/processor/0.1/jobs/{jobId}")
   Call<MergeJobResponse> getJob(
@@ -118,11 +115,10 @@ public interface AllApi {
    * Get all jobs
    * Get all office text job definitions and their current state.
    * @param status A list of status to filter on. (optional)
-   * @return Call&lt;List<MergeJobResponse>&gt;
+   * @return Call&lt;List&lt;MergeJobResponse&gt;&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @GET("template/processor/0.1/jobs")
   Call<List<MergeJobResponse>> getJobs(
@@ -133,17 +129,15 @@ public interface AllApi {
    * Get the result file
    * Get a merge result document as a binary stream.   
    * @param jobId jobId (required)
-   * @param streamId streamId (required)
-   * @param outputSettings outputSettings (optional)
+   * @param resultStreamRequest resultStreamRequest (required)
    * @return Call&lt;byte[]&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
-  @PUT("template/processor/0.1/jobs/{jobId}/result/file/{streamId}")
-  Call<byte[]> getResultStreamById(
-    @retrofit2.http.Path("jobId") String jobId, @retrofit2.http.Path("streamId") String streamId, @retrofit2.http.Body OutputSettings outputSettings
+  @PUT("template/processor/0.1/jobs/{jobId}/result/stream")
+  Call<byte[]> getResultStream(
+    @retrofit2.http.Path("jobId") String jobId, @retrofit2.http.Body ResultStreamRequest resultStreamRequest
   );
 
   /**
@@ -153,9 +147,8 @@ public interface AllApi {
    * @param outputSettings outputSettings (optional)
    * @return Call&lt;byte[]&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @PUT("template/processor/0.1/jobs/{jobId}/result/container")
   Call<byte[]> getResultStreamsAsContainer(
@@ -168,9 +161,8 @@ public interface AllApi {
    * @param templateId The template context name unique for your environment (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @GET("template/processor/0.1/templates/{templateId}")
   Call<TemplateContextResponse> getTemplateContext(
@@ -183,9 +175,8 @@ public interface AllApi {
    * @param mergesettings The merge- and output settings (required)
    * @return Call&lt;MergeJobResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @PUT("template/processor/0.1/jobs")
   Call<MergeJobResponse> submitJob(
@@ -198,9 +189,8 @@ public interface AllApi {
    * @param templateContext templateContext (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @PUT("template/processor/0.1/templates")
   Call<TemplateContextResponse> updateTemplateContext(
@@ -214,7 +204,6 @@ public interface AllApi {
    * @param stream The template (file/inputstream) to store (required)
    * @return Call&lt;TemplateContextResponse&gt;
    */
-  
   @retrofit2.http.Multipart
   @POST("template/processor/0.1/templates/{templateId}")
   Call<TemplateContextResponse> uploadTemplateFile(

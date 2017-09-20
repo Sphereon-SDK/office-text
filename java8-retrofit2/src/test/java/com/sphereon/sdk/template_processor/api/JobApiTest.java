@@ -1,10 +1,11 @@
 package com.sphereon.sdk.template_processor.api;
 
 import com.sphereon.sdk.template_processor.handler.ApiClient;
-import com.sphereon.sdk.template_processor.model.MergeJobResponse;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
-import com.sphereon.sdk.template_processor.model.OutputSettings;
+import com.sphereon.sdk.template_processor.model.MergeJobResponse;
 import com.sphereon.sdk.template_processor.model.MergeSettings;
+import com.sphereon.sdk.template_processor.model.OutputSettings;
+import com.sphereon.sdk.template_processor.model.ResultStreamRequest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -58,11 +59,10 @@ public class JobApiTest {
      * Get a merge result document as a binary stream.   
      */
     @Test
-    public void getResultStreamByIdTest() {
+    public void getResultStreamTest() {
         String jobId = null;
-        String streamId = null;
-        OutputSettings outputSettings = null;
-        // byte[] response = api.getResultStreamById(jobId, streamId, outputSettings);
+        ResultStreamRequest resultStreamRequest = null;
+        // byte[] response = api.getResultStream(jobId, resultStreamRequest);
 
         // TODO: test validations
     }

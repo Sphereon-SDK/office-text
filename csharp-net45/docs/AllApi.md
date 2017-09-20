@@ -1,6 +1,6 @@
 # Sphereon.SDK.TemplateProcessor.Api.AllApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**DeleteTemplateContext**](AllApi.md#deletetemplatecontext) | **DELETE** /template/processor/0.1/templates/{templateId} | Delete template context
 [**GetJob**](AllApi.md#getjob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
 [**GetJobs**](AllApi.md#getjobs) | **GET** /template/processor/0.1/jobs | Get all jobs
-[**GetResultStreamById**](AllApi.md#getresultstreambyid) | **PUT** /template/processor/0.1/jobs/{jobId}/result/file/{streamId} | Get the result file
+[**GetResultStream**](AllApi.md#getresultstream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
 [**GetResultStreamsAsContainer**](AllApi.md#getresultstreamsascontainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
 [**GetTemplateContext**](AllApi.md#gettemplatecontext) | **GET** /template/processor/0.1/templates/{templateId} | Get template context
 [**SubmitJob**](AllApi.md#submitjob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
@@ -41,7 +41,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -106,7 +105,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -171,7 +169,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -236,7 +233,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -301,7 +297,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -366,7 +361,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -431,7 +425,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -457,7 +450,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**List<string>**](string.md)| A list of status to filter on. | [optional] 
+ **status** | [**List&lt;string&gt;**](string.md)| A list of status to filter on. | [optional] 
 
 ### Return type
 
@@ -474,9 +467,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getresultstreambyid"></a>
-# **GetResultStreamById**
-> byte[] GetResultStreamById (string jobId, string streamId, OutputSettings outputSettings = null)
+<a name="getresultstream"></a>
+# **GetResultStream**
+> byte[] GetResultStream (string jobId, ResultStreamRequest resultStreamRequest)
 
 Get the result file
 
@@ -492,28 +485,26 @@ using Sphereon.SDK.TemplateProcessor.Model;
 
 namespace Example
 {
-    public class GetResultStreamByIdExample
+    public class GetResultStreamExample
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new AllApi();
             var jobId = jobId_example;  // string | jobId
-            var streamId = streamId_example;  // string | streamId
-            var outputSettings = new OutputSettings(); // OutputSettings | outputSettings (optional) 
+            var resultStreamRequest = new ResultStreamRequest(); // ResultStreamRequest | resultStreamRequest
 
             try
             {
                 // Get the result file
-                byte[] result = apiInstance.GetResultStreamById(jobId, streamId, outputSettings);
+                byte[] result = apiInstance.GetResultStream(jobId, resultStreamRequest);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AllApi.GetResultStreamById: " + e.Message );
+                Debug.Print("Exception when calling AllApi.GetResultStream: " + e.Message );
             }
         }
     }
@@ -525,8 +516,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **jobId** | **string**| jobId | 
- **streamId** | **string**| streamId | 
- **outputSettings** | [**OutputSettings**](OutputSettings.md)| outputSettings | [optional] 
+ **resultStreamRequest** | [**ResultStreamRequest**](ResultStreamRequest.md)| resultStreamRequest | 
 
 ### Return type
 
@@ -565,7 +555,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -632,7 +621,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -697,7 +685,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -762,7 +749,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -827,7 +813,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 

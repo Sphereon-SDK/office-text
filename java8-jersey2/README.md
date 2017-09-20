@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.sphereon.sdk</groupId>
     <artifactId>template-processor-sdk-java8-jersey2</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.sphereon.sdk:template-processor-sdk-java8-jersey2:0.1.0"
+compile "com.sphereon.sdk:template-processor-sdk-java8-jersey2:0.1.1"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/template-processor-sdk-java8-jersey2-0.1.0.jar
+* target/template-processor-sdk-java8-jersey2-0.1.1.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -61,12 +61,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.sphereon.sdk.template_processor.handler.*;
 import com.sphereon.sdk.template_processor.handler.auth.*;
 import com.sphereon.sdk.template_processor.model.*;
-import com.sphereon.sdk.template_processor.api.MergeApi;
+import com.sphereon.sdk.template_processor.api.AllApi;
 
 import java.io.File;
 import java.util.*;
 
-public class MergeApiExample {
+public class AllApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -75,13 +75,13 @@ public class MergeApiExample {
         OAuth oauth2schema = (OAuth) defaultClient.getAuthentication("oauth2schema");
         oauth2schema.setAccessToken("YOUR ACCESS TOKEN");
 
-        MergeApi apiInstance = new MergeApi();
+        AllApi apiInstance = new AllApi();
         String payload = "payload_example"; // String | The dates for the merge [   {     \"Field1\": \"Field1 value\",     \"Field2\": \"Field2 value\",   },   {     \"Field1\": \"Field1 value\",     \"Field2\": \"Field2 value\",   } ]
         try {
             DataSetResponse result = apiInstance.createDataSet(payload);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling MergeApi#createDataSet");
+            System.err.println("Exception when calling AllApi#createDataSet");
             e.printStackTrace();
         }
     }
@@ -91,23 +91,35 @@ public class MergeApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*MergeApi* | [**createDataSet**](docs/MergeApi.md#createDataSet) | **POST** /template-processor/merge/0.1/datasets | Store dataset
-*MergeApi* | [**createTemplateContext**](docs/MergeApi.md#createTemplateContext) | **POST** /template-processor/merge/0.1/templates | Create template context
-*MergeApi* | [**deleteDataSet**](docs/MergeApi.md#deleteDataSet) | **DELETE** /template-processor/merge/0.1/datasets/{dataSetId} | Delete a stored data set
-*MergeApi* | [**deleteJob**](docs/MergeApi.md#deleteJob) | **DELETE** /template-processor/merge/0.1/jobs/{jobId} | Delete a job manually
-*MergeApi* | [**deleteTemplateContext**](docs/MergeApi.md#deleteTemplateContext) | **DELETE** /template-processor/merge/0.1/templates/{templateId} | Delete template context
-*MergeApi* | [**getJob**](docs/MergeApi.md#getJob) | **GET** /template-processor/merge/0.1/jobs/{jobId} | Job definition and state
-*MergeApi* | [**getJobs**](docs/MergeApi.md#getJobs) | **GET** /template-processor/merge/0.1/jobs | Get all jobs
-*MergeApi* | [**getResultStreamById**](docs/MergeApi.md#getResultStreamById) | **PUT** /template-processor/merge/0.1/jobs/{jobId}/result/file/{streamId} | Get the result file
-*MergeApi* | [**getResultStreamsAsContainer**](docs/MergeApi.md#getResultStreamsAsContainer) | **PUT** /template-processor/merge/0.1/jobs/{jobId}/result/container | Get the result file
-*MergeApi* | [**getTemplateContext**](docs/MergeApi.md#getTemplateContext) | **GET** /template-processor/merge/0.1/templates/{templateId} | Get template context
-*MergeApi* | [**submitJob**](docs/MergeApi.md#submitJob) | **PUT** /template-processor/merge/0.1/jobs | Submit merge job for processing
-*MergeApi* | [**updateTemplateContext**](docs/MergeApi.md#updateTemplateContext) | **PUT** /template-processor/merge/0.1/templates | Update template context
-*MergeApi* | [**uploadTemplateFile**](docs/MergeApi.md#uploadTemplateFile) | **POST** /template-processor/merge/0.1/templates/{templateId} | Upload template file
+*AllApi* | [**createDataSet**](docs/AllApi.md#createDataSet) | **POST** /template/processor/0.1/datasets | Store dataset
+*AllApi* | [**createTemplateContext**](docs/AllApi.md#createTemplateContext) | **POST** /template/processor/0.1/templates | Create template context
+*AllApi* | [**deleteDataSet**](docs/AllApi.md#deleteDataSet) | **DELETE** /template/processor/0.1/datasets/{dataSetId} | Delete a stored data set
+*AllApi* | [**deleteJob**](docs/AllApi.md#deleteJob) | **DELETE** /template/processor/0.1/jobs/{jobId} | Delete a job manually
+*AllApi* | [**deleteTemplateContext**](docs/AllApi.md#deleteTemplateContext) | **DELETE** /template/processor/0.1/templates/{templateId} | Delete template context
+*AllApi* | [**getJob**](docs/AllApi.md#getJob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
+*AllApi* | [**getJobs**](docs/AllApi.md#getJobs) | **GET** /template/processor/0.1/jobs | Get all jobs
+*AllApi* | [**getResultStream**](docs/AllApi.md#getResultStream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
+*AllApi* | [**getResultStreamsAsContainer**](docs/AllApi.md#getResultStreamsAsContainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
+*AllApi* | [**getTemplateContext**](docs/AllApi.md#getTemplateContext) | **GET** /template/processor/0.1/templates/{templateId} | Get template context
+*AllApi* | [**submitJob**](docs/AllApi.md#submitJob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
+*AllApi* | [**updateTemplateContext**](docs/AllApi.md#updateTemplateContext) | **PUT** /template/processor/0.1/templates | Update template context
+*AllApi* | [**uploadTemplateFile**](docs/AllApi.md#uploadTemplateFile) | **POST** /template/processor/0.1/templates/{templateId} | Upload template file
+*DataSetApi* | [**createDataSet**](docs/DataSetApi.md#createDataSet) | **POST** /template/processor/0.1/datasets | Store dataset
+*DataSetApi* | [**deleteDataSet**](docs/DataSetApi.md#deleteDataSet) | **DELETE** /template/processor/0.1/datasets/{dataSetId} | Delete a stored data set
+*JobApi* | [**getJob**](docs/JobApi.md#getJob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
+*JobApi* | [**getJobs**](docs/JobApi.md#getJobs) | **GET** /template/processor/0.1/jobs | Get all jobs
+*JobApi* | [**getResultStream**](docs/JobApi.md#getResultStream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
+*JobApi* | [**getResultStreamsAsContainer**](docs/JobApi.md#getResultStreamsAsContainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
+*JobApi* | [**submitJob**](docs/JobApi.md#submitJob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
+*TemplateApi* | [**createTemplateContext**](docs/TemplateApi.md#createTemplateContext) | **POST** /template/processor/0.1/templates | Create template context
+*TemplateApi* | [**deleteTemplateContext**](docs/TemplateApi.md#deleteTemplateContext) | **DELETE** /template/processor/0.1/templates/{templateId} | Delete template context
+*TemplateApi* | [**getTemplateContext**](docs/TemplateApi.md#getTemplateContext) | **GET** /template/processor/0.1/templates/{templateId} | Get template context
+*TemplateApi* | [**updateTemplateContext**](docs/TemplateApi.md#updateTemplateContext) | **PUT** /template/processor/0.1/templates | Update template context
+*TemplateApi* | [**uploadTemplateFile**](docs/TemplateApi.md#uploadTemplateFile) | **POST** /template/processor/0.1/templates/{templateId} | Upload template file
 
 
 ## Documentation for Models
@@ -121,6 +133,8 @@ Class | Method | HTTP request | Description
  - [MergeSettings](docs/MergeSettings.md)
  - [OutputSettings](docs/OutputSettings.md)
  - [OwnerInfo](docs/OwnerInfo.md)
+ - [ResultStreamRequest](docs/ResultStreamRequest.md)
+ - [StorageLocation](docs/StorageLocation.md)
  - [StreamLocation](docs/StreamLocation.md)
  - [TemplateContext](docs/TemplateContext.md)
  - [TemplateContextRequest](docs/TemplateContextRequest.md)
@@ -134,7 +148,7 @@ Authentication schemes defined for the API:
 
 - **Type**: OAuth
 - **Flow**: application
-- **Authorizatoin URL**: 
+- **Authorization URL**: 
 - **Scopes**: 
   - global: accessEverything
 

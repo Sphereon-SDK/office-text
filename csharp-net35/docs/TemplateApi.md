@@ -1,6 +1,6 @@
 # Sphereon.SDK.TemplateProcessor.Api.TemplateApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -33,7 +33,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -98,7 +97,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -163,7 +161,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -228,7 +225,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -293,7 +289,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure OAuth2 access token for authorization: oauth2schema
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 

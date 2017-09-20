@@ -1,10 +1,11 @@
 package com.sphereon.sdk.template_processor.api;
 
 import com.sphereon.sdk.template_processor.handler.ApiClient;
-import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
 import java.io.File;
+import com.sphereon.sdk.template_processor.model.TemplateContext;
+import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -72,8 +73,8 @@ public class TemplateApiTest {
      */
     @Test
     public void updateTemplateContextTest() {
-        TemplateContextRequest templateContextRequest = null;
-        // TemplateContextResponse response = api.updateTemplateContext(templateContextRequest);
+        TemplateContext templateContext = null;
+        // TemplateContextResponse response = api.updateTemplateContext(templateContext);
 
         // TODO: test validations
     }

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:31.439+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-20T13:28:35.968+02:00")
 public class DataSetApi {
   private ApiClient apiClient;
 
@@ -51,7 +51,7 @@ public class DataSetApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/datasets".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/datasets";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -92,7 +92,7 @@ public class DataSetApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/datasets/{dataSetId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/datasets/{dataSetId}"
       .replaceAll("\\{" + "dataSetId" + "\\}", apiClient.escapeString(dataSetId.toString()));
 
     // query params

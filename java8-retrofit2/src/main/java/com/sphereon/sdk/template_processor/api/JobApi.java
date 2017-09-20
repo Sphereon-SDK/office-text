@@ -3,20 +3,23 @@ package com.sphereon.sdk.template_processor.api;
 import com.sphereon.sdk.template_processor.handler.CollectionFormats.*;
 
 
+
 import retrofit2.Call;
 import retrofit2.http.*;
 
 import okhttp3.RequestBody;
 
-import com.sphereon.sdk.template_processor.model.MergeJobResponse;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
-import com.sphereon.sdk.template_processor.model.OutputSettings;
+import com.sphereon.sdk.template_processor.model.MergeJobResponse;
 import com.sphereon.sdk.template_processor.model.MergeSettings;
+import com.sphereon.sdk.template_processor.model.OutputSettings;
+import com.sphereon.sdk.template_processor.model.ResultStreamRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public interface JobApi {
   /**
@@ -25,9 +28,8 @@ public interface JobApi {
    * @param jobId jobId (required)
    * @return Call&lt;MergeJobResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @GET("template/processor/0.1/jobs/{jobId}")
   Call<MergeJobResponse> getJob(
@@ -38,11 +40,10 @@ public interface JobApi {
    * Get all jobs
    * Get all office text job definitions and their current state.
    * @param status A list of status to filter on. (optional)
-   * @return Call&lt;List<MergeJobResponse>&gt;
+   * @return Call&lt;List&lt;MergeJobResponse&gt;&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json" 
+    "Content-Type:application/json"
   })
   @GET("template/processor/0.1/jobs")
   Call<List<MergeJobResponse>> getJobs(
@@ -53,17 +54,15 @@ public interface JobApi {
    * Get the result file
    * Get a merge result document as a binary stream.   
    * @param jobId jobId (required)
-   * @param streamId streamId (required)
-   * @param outputSettings outputSettings (optional)
+   * @param resultStreamRequest resultStreamRequest (required)
    * @return Call&lt;byte[]&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
-  @PUT("template/processor/0.1/jobs/{jobId}/result/file/{streamId}")
-  Call<byte[]> getResultStreamById(
-    @retrofit2.http.Path("jobId") String jobId, @retrofit2.http.Path("streamId") String streamId, @retrofit2.http.Body OutputSettings outputSettings
+  @PUT("template/processor/0.1/jobs/{jobId}/result/stream")
+  Call<byte[]> getResultStream(
+    @retrofit2.http.Path("jobId") String jobId, @retrofit2.http.Body ResultStreamRequest resultStreamRequest
   );
 
   /**
@@ -73,9 +72,8 @@ public interface JobApi {
    * @param outputSettings outputSettings (optional)
    * @return Call&lt;byte[]&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @PUT("template/processor/0.1/jobs/{jobId}/result/container")
   Call<byte[]> getResultStreamsAsContainer(
@@ -88,9 +86,8 @@ public interface JobApi {
    * @param mergesettings The merge- and output settings (required)
    * @return Call&lt;MergeJobResponse&gt;
    */
-  
   @Headers({
-  	"Content-Type:application/json;charset&#x3D;UTF-8" 
+    "Content-Type:application/json;charset&#x3D;UTF-8"
   })
   @PUT("template/processor/0.1/jobs")
   Call<MergeJobResponse> submitJob(

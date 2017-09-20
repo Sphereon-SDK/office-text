@@ -9,20 +9,21 @@ import javax.ws.rs.core.GenericType;
 
 import com.sphereon.sdk.template_processor.model.DataSetResponse;
 import com.sphereon.sdk.template_processor.model.ErrorResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
-import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
-import com.sphereon.sdk.template_processor.model.MergeJobResponse;
-import com.sphereon.sdk.template_processor.model.OutputSettings;
-import com.sphereon.sdk.template_processor.model.MergeSettings;
-import com.sphereon.sdk.template_processor.model.TemplateContext;
 import java.io.File;
+import com.sphereon.sdk.template_processor.model.MergeJobResponse;
+import com.sphereon.sdk.template_processor.model.MergeSettings;
+import com.sphereon.sdk.template_processor.model.OutputSettings;
+import com.sphereon.sdk.template_processor.model.ResultStreamRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContext;
+import com.sphereon.sdk.template_processor.model.TemplateContextRequest;
+import com.sphereon.sdk.template_processor.model.TemplateContextResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-31T12:07:31.439+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-20T13:28:35.968+02:00")
 public class AllApi {
   private ApiClient apiClient;
 
@@ -58,7 +59,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/datasets".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/datasets";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -99,7 +100,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/templates";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -140,7 +141,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/datasets/{dataSetId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/datasets/{dataSetId}"
       .replaceAll("\\{" + "dataSetId" + "\\}", apiClient.escapeString(dataSetId.toString()));
 
     // query params
@@ -182,7 +183,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/jobs/{jobId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/jobs/{jobId}"
       .replaceAll("\\{" + "jobId" + "\\}", apiClient.escapeString(jobId.toString()));
 
     // query params
@@ -224,7 +225,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates/{templateId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/templates/{templateId}"
       .replaceAll("\\{" + "templateId" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params
@@ -266,7 +267,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/jobs/{jobId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/jobs/{jobId}"
       .replaceAll("\\{" + "jobId" + "\\}", apiClient.escapeString(jobId.toString()));
 
     // query params
@@ -296,14 +297,14 @@ public class AllApi {
    * Get all jobs
    * Get all office text job definitions and their current state.
    * @param status A list of status to filter on. (optional)
-   * @return List<MergeJobResponse>
+   * @return List&lt;MergeJobResponse&gt;
    * @throws ApiException if fails to make API call
    */
   public List<MergeJobResponse> getJobs(List<String> status) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/jobs".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/jobs";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -333,28 +334,26 @@ public class AllApi {
    * Get the result file
    * Get a merge result document as a binary stream.   
    * @param jobId jobId (required)
-   * @param streamId streamId (required)
-   * @param outputSettings outputSettings (optional)
+   * @param resultStreamRequest resultStreamRequest (required)
    * @return byte[]
    * @throws ApiException if fails to make API call
    */
-  public byte[] getResultStreamById(String jobId, String streamId, OutputSettings outputSettings) throws ApiException {
-    Object localVarPostBody = outputSettings;
+  public byte[] getResultStream(String jobId, ResultStreamRequest resultStreamRequest) throws ApiException {
+    Object localVarPostBody = resultStreamRequest;
     
     // verify the required parameter 'jobId' is set
     if (jobId == null) {
-      throw new ApiException(400, "Missing the required parameter 'jobId' when calling getResultStreamById");
+      throw new ApiException(400, "Missing the required parameter 'jobId' when calling getResultStream");
     }
     
-    // verify the required parameter 'streamId' is set
-    if (streamId == null) {
-      throw new ApiException(400, "Missing the required parameter 'streamId' when calling getResultStreamById");
+    // verify the required parameter 'resultStreamRequest' is set
+    if (resultStreamRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'resultStreamRequest' when calling getResultStream");
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/jobs/{jobId}/result/file/{streamId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "jobId" + "\\}", apiClient.escapeString(jobId.toString()))
-      .replaceAll("\\{" + "streamId" + "\\}", apiClient.escapeString(streamId.toString()));
+    String localVarPath = "/template/processor/0.1/jobs/{jobId}/result/stream"
+      .replaceAll("\\{" + "jobId" + "\\}", apiClient.escapeString(jobId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -396,7 +395,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/jobs/{jobId}/result/container".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/jobs/{jobId}/result/container"
       .replaceAll("\\{" + "jobId" + "\\}", apiClient.escapeString(jobId.toString()));
 
     // query params
@@ -438,7 +437,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates/{templateId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/templates/{templateId}"
       .replaceAll("\\{" + "templateId" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params
@@ -480,7 +479,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/jobs".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/jobs";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -521,7 +520,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates".replaceAll("\\{format\\}","json");
+    String localVarPath = "/template/processor/0.1/templates";
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -568,7 +567,7 @@ public class AllApi {
     }
     
     // create path and map variables
-    String localVarPath = "/template/processor/0.1/templates/{templateId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/template/processor/0.1/templates/{templateId}"
       .replaceAll("\\{" + "templateId" + "\\}", apiClient.escapeString(templateId.toString()));
 
     // query params

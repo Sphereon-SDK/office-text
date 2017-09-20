@@ -1,6 +1,6 @@
 # AllApi
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com/*
+All URIs are relative to *https://gw.api.cloud.sphereon.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**deleteTemplateContext**](AllApi.md#deleteTemplateContext) | **DELETE** template/processor/0.1/templates/{templateId} | Delete template context
 [**getJob**](AllApi.md#getJob) | **GET** template/processor/0.1/jobs/{jobId} | Job definition and state
 [**getJobs**](AllApi.md#getJobs) | **GET** template/processor/0.1/jobs | Get all jobs
-[**getResultStreamById**](AllApi.md#getResultStreamById) | **PUT** template/processor/0.1/jobs/{jobId}/result/file/{streamId} | Get the result file
+[**getResultStream**](AllApi.md#getResultStream) | **PUT** template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
 [**getResultStreamsAsContainer**](AllApi.md#getResultStreamsAsContainer) | **PUT** template/processor/0.1/jobs/{jobId}/result/container | Get the result file
 [**getTemplateContext**](AllApi.md#getTemplateContext) | **GET** template/processor/0.1/templates/{templateId} | Get template context
 [**submitJob**](AllApi.md#submitJob) | **PUT** template/processor/0.1/jobs | Submit merge job for processing
@@ -390,9 +390,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json;charset=UTF-8
 
-<a name="getResultStreamById"></a>
-# **getResultStreamById**
-> byte[] getResultStreamById(jobId, streamId, outputSettings)
+<a name="getResultStream"></a>
+# **getResultStream**
+> byte[] getResultStream(jobId, resultStreamRequest)
 
 Get the result file
 
@@ -415,13 +415,12 @@ oauth2schema.setAccessToken("YOUR ACCESS TOKEN");
 
 AllApi apiInstance = new AllApi();
 String jobId = "jobId_example"; // String | jobId
-String streamId = "streamId_example"; // String | streamId
-OutputSettings outputSettings = new OutputSettings(); // OutputSettings | outputSettings
+ResultStreamRequest resultStreamRequest = new ResultStreamRequest(); // ResultStreamRequest | resultStreamRequest
 try {
-    byte[] result = apiInstance.getResultStreamById(jobId, streamId, outputSettings);
+    byte[] result = apiInstance.getResultStream(jobId, resultStreamRequest);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AllApi#getResultStreamById");
+    System.err.println("Exception when calling AllApi#getResultStream");
     e.printStackTrace();
 }
 ```
@@ -431,8 +430,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **jobId** | **String**| jobId |
- **streamId** | **String**| streamId |
- **outputSettings** | [**OutputSettings**](OutputSettings.md)| outputSettings | [optional]
+ **resultStreamRequest** | [**ResultStreamRequest**](ResultStreamRequest.md)| resultStreamRequest |
 
 ### Return type
 
