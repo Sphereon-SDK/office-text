@@ -8,11 +8,13 @@
 	<name>TEMPLATE PROCESSOR API SDK Generator</name>
 
 	<properties>
+		<company-name>Sphereon BV</company-name>
 		<sdk-package>com.sphereon.sdk.template-processor</sdk-package>
 		<sdk-package-csharp>Sphereon.SDK.TemplateProcessor</sdk-package-csharp>
 		<sdk-package-javascript>SphereonTemplateProcessor</sdk-package-javascript>
 		
 		<swagger-coden-maven-plugin.version>2.2.3</swagger-coden-maven-plugin.version>
+		<swagger-coden-verbose>false</swagger-coden-verbose>
 	</properties>
 
 	<profiles>
@@ -20,7 +22,6 @@
 			<id>html-docs</id>
 			<build>
 				<plugins>
-					<!-- activate the plugin -->
 					<plugin>
 						<groupId>io.swagger</groupId>
 						<artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -31,19 +32,12 @@
 									<goal>generate</goal>
 								</goals>
 								<configuration>
-									<!-- specify the swagger yaml -->
 									<inputSpec>swagger.sdk.json</inputSpec>
-									<!--<inputSpec>https://store.sphereon.com/store/api-docs/admin/PDF/${api-version}</inputSpec>-->
-
-
-									<!-- target to generate -->
 									<language>html2</language>
-
-									<!-- pass any necessary config options -->
 									<configOptions>
 										<dateLibrary>java8</dateLibrary>
 									</configOptions>
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/html-docs</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-html-docs</artifactId>
@@ -75,16 +69,12 @@
 								</goals>
 								<configuration>
 									<inputSpec>swagger.sdk.json</inputSpec>
-
-
 									<language>java</language>
-
 									<configOptions>
 										<dateLibrary>java8</dateLibrary>
 									</configOptions>
-
 									<library>okhttp-gson</library>
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/java8-okhttp-gson</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-java8</artifactId>
@@ -105,7 +95,6 @@
 			<id>java8-jersey2</id>
 			<build>
 				<plugins>
-					<!-- activate the plugin -->
 					<plugin>
 						<groupId>io.swagger</groupId>
 						<artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -115,24 +104,14 @@
 								<goals>
 									<goal>generate</goal>
 								</goals>
-
 								<configuration>
-									<!-- specify the swagger yaml -->
 									<inputSpec>swagger.sdk.json</inputSpec>
-									<!--<inputSpec>https://store.sphereon.com/store/api-docs/admin/PDF/${api-version}</inputSpec>-->
-
-
-									<!-- target to generate -->
 									<language>java</language>
-
-									<!-- pass any necessary config options -->
 									<configOptions>
 										<dateLibrary>java8</dateLibrary>
 									</configOptions>
-
-									<!-- override the default library to jersey2 -->
 									<library>jersey2</library>
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/java8-jersey2</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-java8-jersey2</artifactId>
@@ -154,7 +133,6 @@
 			<id>java8-retrofit2</id>
 			<build>
 				<plugins>
-					<!-- activate the plugin -->
 					<plugin>
 						<groupId>io.swagger</groupId>
 						<artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -165,22 +143,13 @@
 									<goal>generate</goal>
 								</goals>
 								<configuration>
-									<!-- specify the swagger yaml -->
 									<inputSpec>swagger.sdk.json</inputSpec>
-									<!--<inputSpec>https://store.sphereon.com/store/api-docs/admin/PDF/${api-version}</inputSpec>-->
-
-
-									<!-- target to generate -->
 									<language>java</language>
-
-									<!-- pass any necessary config options -->
 									<configOptions>
 										<dateLibrary>java8</dateLibrary>
 									</configOptions>
-
-									<!-- override the default library to jersey2 -->
 									<library>retrofit2</library>
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/java8-retrofit2</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-java8-retrofit2</artifactId>
@@ -199,36 +168,24 @@
 
 		<profile>
 			<id>javascript</id>
-			<!-- activating this one by default will break the build -->
 			<build>
 				<plugins>
-					<!-- activate the plugin -->
 					<plugin>
 						<groupId>io.swagger</groupId>
 						<artifactId>swagger-codegen-maven-plugin</artifactId>
 						<version>${swagger-coden-maven-plugin.version}</version>
-
 						<executions>
-
 							<execution>
 								<goals>
 									<goal>generate</goal>
 								</goals>
 								<configuration>
-									<!-- specify the swagger yaml -->
 									<inputSpec>swagger.sdk.json</inputSpec>
-									<!--<inputSpec>https://store.sphereon.com/store/api-docs/admin/PDF/${api-version}</inputSpec>-->
-
-
-									<!-- target to generate -->
 									<language>javascript</language>
-
-									<!-- pass any necessary config options -->
 									<configOptions>
 										<dateLibrary>java8</dateLibrary>
 									</configOptions>
-
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/javascript</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-javascript</artifactId>
@@ -249,7 +206,6 @@
 			<id>csharp-net45</id>
 			<build>
 				<plugins>
-					<!-- activate the plugin -->
 					<plugin>
 						<groupId>io.swagger</groupId>
 						<artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -262,36 +218,22 @@
 									<goal>generate</goal>
 								</goals>
 								<configuration>
-									<!-- specify the swagger yaml -->
 									<inputSpec>swagger.sdk.json</inputSpec>
-									<!--<inputSpec>https://store.sphereon.com/store/api-docs/admin/PDF/${api-version}</inputSpec>-->
-
-									<!-- target to generate -->
 									<language>csharp</language>
-
-									<!-- pass any necessary config options -->
 									<configOptions>
-
-										<packageCompany>Sphereon BV</packageCompany>
+										<packageCompany>${company-name}</packageCompany>
 										<apiPackage>${sdk-package-csharp}.Api</apiPackage>
 										<modelPackage>${sdk-package-csharp}.Model</modelPackage>
 										<invokerPackage>${sdk-package-csharp}.Handler</invokerPackage>
 										<packageName>${sdk-package-csharp}</packageName>
-
-
 									</configOptions>
-
 									<configurationFile>src/main/resources/config/csharp-net45.json</configurationFile>
-									<!-- override the default library to jersey2 -->
-									<!-- <library>okhttp-gson</library>
-                                    -->
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/csharp-net45</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-csharp-net45</artifactId>
 									<artifactVersion>${project.version}</artifactVersion>
 									<addCompileSourceRoot>true</addCompileSourceRoot>
-
 									<apiPackage>Api</apiPackage>
 									<modelPackage>Model</modelPackage>
 									<invokerPackage>Handler</invokerPackage>
@@ -307,7 +249,6 @@
 			<id>csharp-net35</id>
 			<build>
 				<plugins>
-					<!-- activate the plugin -->
 					<plugin>
 						<groupId>io.swagger</groupId>
 						<artifactId>swagger-codegen-maven-plugin</artifactId>
@@ -318,35 +259,23 @@
 									<goal>generate</goal>
 								</goals>
 								<configuration>
-									<!-- specify the swagger yaml -->
 									<inputSpec>swagger.sdk.json</inputSpec>
-									<!--<inputSpec>https://store.sphereon.com/store/api-docs/admin/PDF/${api-version}</inputSpec>-->
-
-									<!-- target to generate -->
 									<language>csharp</language>
-
-									<!-- pass any necessary config options -->
 									<configOptions>
-
-										<packageCompany>Sphereon BV</packageCompany>
+										<packageCompany>${company-name}</packageCompany>
 										<apiPackage>${sdk-package-csharp}.Api</apiPackage>
 										<modelPackage>${sdk-package-csharp}.Model</modelPackage>
 										<invokerPackage>${sdk-package-csharp}.Handler</invokerPackage>
 										<packageName>${sdk-package-csharp}</packageName>
 										<targetFramework>v3.5</targetFramework>
 									</configOptions>
-
 									<configurationFile>src/main/resources/config/csharp-net35.json</configurationFile>
-									<!-- override the default library to jersey2 -->
-									<!-- <library>okhttp-gson</library>
-                                    -->
-									<verbose>true</verbose>
+									<verbose>${swagger-coden-verbose}</verbose>
 									<output>${project.basedir}/csharp-net35</output>
 									<groupId>com.sphereon.sdk</groupId>
 									<artifactId>template-processor-sdk-csharp-net35</artifactId>
 									<artifactVersion>${project.version}</artifactVersion>
 									<addCompileSourceRoot>true</addCompileSourceRoot>
-
 									<apiPackage>Api</apiPackage>
 									<modelPackage>Model</modelPackage>
 									<invokerPackage>Handler</invokerPackage>

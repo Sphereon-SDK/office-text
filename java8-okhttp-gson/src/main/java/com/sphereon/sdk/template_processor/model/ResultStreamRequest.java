@@ -29,7 +29,7 @@ import java.io.IOException;
  * A request to download a specific result stream.
  */
 @ApiModel(description = "A request to download a specific result stream.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-20T13:28:56.163+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-20T13:41:41.824+02:00")
 public class ResultStreamRequest {
   @SerializedName("streamLocation")
   private StreamLocation streamLocation = null;
