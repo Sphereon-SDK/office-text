@@ -12,7 +12,7 @@
 		<sdk-package>com.sphereon.sdk.template-processor</sdk-package>
 		<sdk-package-csharp>Sphereon.SDK.TemplateProcessor</sdk-package-csharp>
 		<sdk-package-javascript>SphereonTemplateProcessor</sdk-package-javascript>
-		
+
 		<swagger-coden-maven-plugin.version>2.2.3</swagger-coden-maven-plugin.version>
 		<swagger-coden-verbose>false</swagger-coden-verbose>
 	</properties>
@@ -286,8 +286,6 @@
 				</plugins>
 			</build>
 		</profile>		
-
-
 	</profiles>
 	<build>
 		<plugins>
