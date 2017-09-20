@@ -278,12 +278,12 @@
       ],
       "consumes": ["application/json;charset=UTF-8"]
     }},
-    "/template/processor/0.1/jobs/{jobId}/result/file/{streamId}": {"put": {
+    "/template/processor/0.1/jobs/{jobId}/result/stream": {"put": {
       "summary": "Get the result file",
       "security": [{"oauth2schema": ["global"]}],
       "produces": ["application/octet-stream"],
       "description": "Get a merge result document as a binary stream.\r\n ",
-      "operationId": "getResultStreamById",
+      "operationId": "getResultStream",
       "responses": {
         "200": {
           "schema": {
@@ -313,18 +313,11 @@
           "required": true
         },
         {
-          "in": "path",
-          "name": "streamId",
-          "description": "streamId",
-          "type": "string",
-          "required": true
-        },
-        {
-          "schema": {"$ref": "#/definitions/OutputSettings"},
+          "schema": {"$ref": "#/definitions/ResultStreamRequest"},
           "in": "body",
-          "name": "outputSettings",
-          "description": "outputSettings",
-          "required": false
+          "name": "resultStreamRequest",
+          "description": "resultStreamRequest",
+          "required": true
         }
       ],
       "tags": [
@@ -765,6 +758,21 @@
             "ERROR",
             "DELETED"
           ]
+        }
+      }
+    },
+    "ResultStreamRequest": {
+      "description": "A request to download a specific result stream.",
+      "type": "object",
+      "required": ["streamLocation"],
+      "properties": {
+        "streamLocation": {
+          "description": "The stream location",
+          "$ref": "#/definitions/StreamLocation"
+        },
+        "outputSettings": {
+          "description": "The Output settings",
+          "$ref": "#/definitions/OutputSettings"
         }
       }
     },
