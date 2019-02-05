@@ -1,94 +1,83 @@
 {
-  "basePath": "/",
+  "basePath": "/template/processor/0.1",
   "paths": {
-    "/template/processor/0.1/jobs": {
-      "get": {
-        "summary": "Get all jobs",
+    "/templates": {
+      "post": {
+        "summary": "Create template context",
         "security": [{"oauth2schema": ["global"]}],
         "produces": ["application/json;charset=UTF-8"],
-        "description": "Get all office text job definitions and their current state.",
-        "operationId": "getJobs",
-        "responses": {"200": {
-          "schema": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/MergeJobResponse"}
+        "description": "Create a unique template context for your environment",
+        "operationId": "createTemplateContext",
+        "responses": {
+          "200": {
+            "schema": {"$ref": "#/definitions/TemplateContextResponse"},
+            "description": "Template context created"
           },
-          "description": "All office text jobs that have not been deleted"
-        }},
+          "400": {
+            "schema": {"$ref": "#/definitions/ErrorResponse"},
+            "description": "Template context already exists"
+          }
+        },
         "parameters": [{
-          "in": "query",
-          "name": "status",
-          "description": "A list of status to filter on.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "CREATED",
-              "UPDATED",
-              "PROCESSING",
-              "DONE",
-              "ERROR",
-              "DELETED"
-            ]
-          },
-          "collectionFormat": "multi",
-          "required": false,
-          "enum": [
-            "CREATED",
-            "UPDATED",
-            "PROCESSING",
-            "DONE",
-            "ERROR",
-            "DELETED"
-          ]
-        }],
-        "tags": [
-          "Job",
-          "All"
-        ],
-        "consumes": ["application/json"]
-      },
-      "put": {
-        "summary": "Submit merge job for processing",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Submit merge job run.",
-        "operationId": "submitJob",
-        "responses": {"200": {
-          "schema": {"$ref": "#/definitions/MergeJobResponse"},
-          "description": "Merge job submitted"
-        }},
-        "parameters": [{
-          "schema": {"$ref": "#/definitions/MergeSettings"},
+          "schema": {"$ref": "#/definitions/TemplateContextRequest"},
           "in": "body",
-          "name": "mergesettings",
-          "description": "The merge- and output settings",
+          "name": "templateRequest",
+          "description": "The template request",
           "required": true
         }],
         "tags": [
-          "Job",
+          "Template",
+          "All"
+        ],
+        "consumes": ["application/json;charset=UTF-8"]
+      },
+      "put": {
+        "summary": "Update template context",
+        "security": [{"oauth2schema": ["global"]}],
+        "produces": ["application/json;charset=UTF-8"],
+        "description": "Update an existing template context for your environment",
+        "operationId": "updateTemplateContext",
+        "responses": {
+          "200": {
+            "schema": {"$ref": "#/definitions/TemplateContextResponse"},
+            "description": "Template context updated"
+          },
+          "500": {
+            "schema": {"$ref": "#/definitions/ErrorResponse"},
+            "description": "Internal server error"
+          },
+          "404": {
+            "schema": {"$ref": "#/definitions/ErrorResponse"},
+            "description": "Template context not found"
+          }
+        },
+        "parameters": [{
+          "schema": {"$ref": "#/definitions/TemplateContext"},
+          "in": "body",
+          "name": "templateContext",
+          "description": "templateContext",
+          "required": true
+        }],
+        "tags": [
+          "Template",
           "All"
         ],
         "consumes": ["application/json;charset=UTF-8"]
       }
     },
-    "/template/processor/0.1/jobs/{jobId}/result/container": {"put": {
+    "/jobs/{jobId}/result/stream": {"put": {
       "summary": "Get the result file",
       "security": [{"oauth2schema": ["global"]}],
       "produces": ["application/octet-stream"],
-      "description": "Get all documents inside a compressed container as a binary stream.\r\n ",
-      "operationId": "getResultStreamsAsContainer",
+      "description": "Get a merge result document as a binary stream.\r\n ",
+      "operationId": "getResultStream",
       "responses": {
         "200": {
           "schema": {
             "format": "byte",
             "type": "string"
           },
-          "description": "Result package successfully created and returned"
-        },
-        "400": {
-          "schema": {"$ref": "#/definitions/ErrorResponse"},
-          "description": "Result file could not be created."
+          "description": "Result file successfully returned"
         },
         "202": {
           "schema": {
@@ -96,6 +85,10 @@
             "type": "string"
           },
           "description": "Result file not yet created. Job is still executing."
+        },
+        "400": {
+          "schema": {"$ref": "#/definitions/ErrorResponse"},
+          "description": "Result file could not be created."
         }
       },
       "parameters": [
@@ -107,11 +100,11 @@
           "required": true
         },
         {
-          "schema": {"$ref": "#/definitions/OutputSettings"},
+          "schema": {"$ref": "#/definitions/ResultStreamRequest"},
           "in": "body",
-          "name": "outputSettings",
-          "description": "outputSettings",
-          "required": false
+          "name": "resultStreamRequest",
+          "description": "resultStreamRequest",
+          "required": true
         }
       ],
       "tags": [
@@ -120,7 +113,7 @@
       ],
       "consumes": ["application/json;charset=UTF-8"]
     }},
-    "/template/processor/0.1/jobs/{jobId}": {
+    "/jobs/{jobId}": {
       "get": {
         "summary": "Job definition and state",
         "security": [{"oauth2schema": ["global"]}],
@@ -185,116 +178,19 @@
         "consumes": ["application/json"]
       }
     },
-    "/template/processor/0.1/templates": {
-      "post": {
-        "summary": "Create template context",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Create a unique template context for your environment",
-        "operationId": "createTemplateContext",
-        "responses": {
-          "200": {
-            "schema": {"$ref": "#/definitions/TemplateContextResponse"},
-            "description": "Template context created"
-          },
-          "400": {
-            "schema": {"$ref": "#/definitions/ErrorResponse"},
-            "description": "Template context already exists"
-          }
-        },
-        "parameters": [{
-          "schema": {"$ref": "#/definitions/TemplateContextRequest"},
-          "in": "body",
-          "name": "templateRequest",
-          "description": "The template request",
-          "required": true
-        }],
-        "tags": [
-          "Template",
-          "All"
-        ],
-        "consumes": ["application/json;charset=UTF-8"]
-      },
-      "put": {
-        "summary": "Update template context",
-        "security": [{"oauth2schema": ["global"]}],
-        "produces": ["application/json;charset=UTF-8"],
-        "description": "Update an existing template context for your environment",
-        "operationId": "updateTemplateContext",
-        "responses": {
-          "200": {
-            "schema": {"$ref": "#/definitions/TemplateContextResponse"},
-            "description": "Template context updated"
-          },
-          "500": {
-            "schema": {"$ref": "#/definitions/ErrorResponse"},
-            "description": "Internal server error"
-          },
-          "404": {
-            "schema": {"$ref": "#/definitions/ErrorResponse"},
-            "description": "Template context not found"
-          }
-        },
-        "parameters": [{
-          "schema": {"$ref": "#/definitions/TemplateContextRequest"},
-          "in": "body",
-          "name": "templateContextRequest",
-          "description": "templateContextRequest",
-          "required": true
-        }],
-        "tags": [
-          "Template",
-          "All"
-        ],
-        "consumes": ["application/json;charset=UTF-8"]
-      }
-    },
-    "/template/processor/0.1/datasets": {"post": {
-      "summary": "Store dataset",
-      "security": [{"oauth2schema": ["global"]}],
-      "produces": ["application/json;charset=UTF-8"],
-      "description": "Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.",
-      "operationId": "createDataSet",
-      "responses": {
-        "200": {
-          "schema": {"$ref": "#/definitions/DataSetResponse"},
-          "description": "Data set received and stored"
-        },
-        "400": {
-          "schema": {"$ref": "#/definitions/ErrorResponse"},
-          "description": "Unsupported data set format"
-        }
-      },
-      "parameters": [{
-        "schema": {"type": "string"},
-        "in": "body",
-        "name": "payload",
-        "description": "The dates for the merge\n[\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  },\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  }\n]",
-        "required": true
-      }],
-      "tags": [
-        "DataSet",
-        "All"
-      ],
-      "consumes": ["application/json;charset=UTF-8"]
-    }},
-    "/template/processor/0.1/jobs/{jobId}/result/file/{streamId}": {"put": {
+    "/jobs/{jobId}/result/container": {"put": {
       "summary": "Get the result file",
       "security": [{"oauth2schema": ["global"]}],
       "produces": ["application/octet-stream"],
-      "description": "Get a merge result document as a binary stream.\r\n ",
-      "operationId": "getResultStreamById",
+      "description": "Get all documents inside a compressed container as a binary stream.\r\n ",
+      "operationId": "getResultStreamsAsContainer",
       "responses": {
         "200": {
           "schema": {
             "format": "byte",
             "type": "string"
           },
-          "description": "Result file successfully returned"
-        },
-        "400": {
-          "schema": {"$ref": "#/definitions/ErrorResponse"},
-          "description": "Result file could not be created."
+          "description": "Result package successfully created and returned"
         },
         "202": {
           "schema": {
@@ -302,6 +198,10 @@
             "type": "string"
           },
           "description": "Result file not yet created. Job is still executing."
+        },
+        "400": {
+          "schema": {"$ref": "#/definitions/ErrorResponse"},
+          "description": "Result file could not be created."
         }
       },
       "parameters": [
@@ -309,13 +209,6 @@
           "in": "path",
           "name": "jobId",
           "description": "jobId",
-          "type": "string",
-          "required": true
-        },
-        {
-          "in": "path",
-          "name": "streamId",
-          "description": "streamId",
           "type": "string",
           "required": true
         },
@@ -333,7 +226,7 @@
       ],
       "consumes": ["application/json;charset=UTF-8"]
     }},
-    "/template/processor/0.1/templates/{templateId}": {
+    "/templates/{templateId}": {
       "post": {
         "summary": "Upload template file",
         "security": [{"oauth2schema": ["global"]}],
@@ -443,7 +336,107 @@
         "consumes": ["application/json"]
       }
     },
-    "/template/processor/0.1/datasets/{dataSetId}": {"delete": {
+    "/datasets": {"post": {
+      "summary": "Store dataset",
+      "security": [{"oauth2schema": ["global"]}],
+      "produces": ["application/json;charset=UTF-8"],
+      "description": "Upload and store a data set. Currently only JSON is supported. This call returns an id which can be specified when submitting a merge job.",
+      "operationId": "createDataSet",
+      "responses": {
+        "200": {
+          "schema": {"$ref": "#/definitions/DataSetResponse"},
+          "description": "Data set received and stored"
+        },
+        "400": {
+          "schema": {"$ref": "#/definitions/ErrorResponse"},
+          "description": "Unsupported data set format"
+        }
+      },
+      "parameters": [{
+        "schema": {"type": "string"},
+        "in": "body",
+        "name": "payload",
+        "description": "The dates for the merge\n[\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  },\n  {\n    \"Field1\": \"Field1 value\",\n    \"Field2\": \"Field2 value\",\n  }\n]",
+        "required": true
+      }],
+      "tags": [
+        "DataSet",
+        "All"
+      ],
+      "consumes": ["application/json;charset=UTF-8"]
+    }},
+    "/jobs": {
+      "get": {
+        "summary": "Get all jobs",
+        "security": [{"oauth2schema": ["global"]}],
+        "produces": ["application/json;charset=UTF-8"],
+        "description": "Get all office text job definitions and their current state.",
+        "operationId": "getJobs",
+        "responses": {"200": {
+          "schema": {
+            "type": "array",
+            "items": {"$ref": "#/definitions/MergeJobResponse"}
+          },
+          "description": "All office text jobs that have not been deleted"
+        }},
+        "parameters": [{
+          "in": "query",
+          "name": "status",
+          "description": "A list of status to filter on.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "UPDATED",
+              "PROCESSING",
+              "DONE",
+              "ERROR",
+              "DELETED"
+            ]
+          },
+          "collectionFormat": "multi",
+          "required": false,
+          "enum": [
+            "CREATED",
+            "UPDATED",
+            "PROCESSING",
+            "DONE",
+            "ERROR",
+            "DELETED"
+          ]
+        }],
+        "tags": [
+          "Job",
+          "All"
+        ],
+        "consumes": ["application/json"]
+      },
+      "put": {
+        "summary": "Submit merge job for processing",
+        "security": [{"oauth2schema": ["global"]}],
+        "produces": ["application/json;charset=UTF-8"],
+        "description": "Submit merge job run.",
+        "operationId": "submitJob",
+        "responses": {"200": {
+          "schema": {"$ref": "#/definitions/MergeJobResponse"},
+          "description": "Merge job submitted"
+        }},
+        "parameters": [{
+          "schema": {"$ref": "#/definitions/MergeSettings"},
+          "in": "body",
+          "name": "mergesettings",
+          "description": "The merge- and output settings",
+          "required": true
+        }],
+        "tags": [
+          "Job",
+          "All"
+        ],
+        "consumes": ["application/json;charset=UTF-8"]
+      }
+    },
+    "/datasets/{dataSetId}": {"delete": {
       "summary": "Delete a stored data set",
       "security": [{"oauth2schema": ["global"]}],
       "produces": ["application/json;charset=UTF-8"],
@@ -571,9 +564,14 @@
       "type": "object",
       "properties": {
         "folderPath": {"type": "string"},
-        "originalFileName": {"type": "string"},
+        "fileName": {"type": "string"},
+        "filename": {"type": "string"},
+        "id": {
+          "readOnly": true,
+          "type": "string"
+        },
         "containerId": {"type": "string"},
-        "fileId": {"type": "string"}
+        "originalFilename": {"type": "string"}
       }
     },
     "TemplateContext": {
@@ -587,6 +585,7 @@
             "FREEMARKER"
           ]
         },
+        "claimParameters": {"$ref": "#/definitions/ClaimParameters"},
         "templateFileLocations": {
           "description": "The template files (versioned)",
           "additionalProperties": {"$ref": "#/definitions/StreamLocation"},
@@ -597,11 +596,25 @@
           "type": "string"
         },
         "ownerInfo": {"$ref": "#/definitions/OwnerInfo"},
+        "storageLocation": {
+          "description": "The storage location. (optional)",
+          "$ref": "#/definitions/StorageLocation"
+        },
         "id": {"type": "string"},
         "templateId": {
           "description": "The template context id",
           "type": "string"
         }
+      }
+    },
+    "ClaimParameters": {
+      "type": "object",
+      "properties": {
+        "apiEndUser": {"type": "string"},
+        "applicationId": {"type": "string"},
+        "keyType": {"type": "string"},
+        "sphereonIdentifier": {"type": "string"},
+        "apiSupplierTenantId": {"type": "string"}
       }
     },
     "ErrorResponse": {
@@ -611,58 +624,6 @@
         "type": "array",
         "items": {"$ref": "#/definitions/Error"}
       }}
-    },
-    "TemplateContextResponse": {
-      "description": "The merge template response.",
-      "type": "object",
-      "required": [
-        "id",
-        "status"
-      ],
-      "properties": {
-        "creationTime": {
-          "format": "date-time",
-          "description": "The creation date/time of this response in ISO 8601 format",
-          "readOnly": true,
-          "type": "string"
-        },
-        "context": {"$ref": "#/definitions/TemplateContext"},
-        "id": {
-          "description": "Unique template context id",
-          "type": "string"
-        },
-        "status": {
-          "description": "The status of the template",
-          "readOnly": true,
-          "type": "string",
-          "enum": [
-            "CREATED",
-            "UPDATED",
-            "DELETED",
-            "PROCESSING"
-          ]
-        }
-      }
-    },
-    "TemplateContextRequest": {
-      "description": "The merge template request.",
-      "type": "object",
-      "required": ["templateType"],
-      "properties": {
-        "templateType": {
-          "type": "string",
-          "enum": [
-            "OFFICE",
-            "FREEMARKER"
-          ]
-        },
-        "description": {"type": "string"},
-        "ownerInfo": {"$ref": "#/definitions/OwnerInfo"},
-        "templateId": {
-          "description": "The template context id",
-          "type": "string"
-        }
-      }
     },
     "OutputSettings": {
       "description": "Output settings",
@@ -699,6 +660,58 @@
         }
       }
     },
+    "TemplateContextRequest": {
+      "description": "The merge template request.",
+      "type": "object",
+      "required": ["template type"],
+      "properties": {
+        "description": {"type": "string"},
+        "ownerInfo": {"$ref": "#/definitions/OwnerInfo"},
+        "templateId": {
+          "description": "The template context id",
+          "type": "string"
+        },
+        "template type": {
+          "type": "string",
+          "enum": [
+            "OFFICE",
+            "FREEMARKER"
+          ]
+        }
+      }
+    },
+    "TemplateContextResponse": {
+      "description": "The merge template response.",
+      "type": "object",
+      "required": [
+        "id",
+        "status"
+      ],
+      "properties": {
+        "creationTime": {
+          "format": "date-time",
+          "description": "The creation date/time of this response in ISO 8601 format",
+          "readOnly": true,
+          "type": "string"
+        },
+        "context": {"$ref": "#/definitions/TemplateContext"},
+        "id": {
+          "description": "Unique template context id",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the template",
+          "readOnly": true,
+          "type": "string",
+          "enum": [
+            "CREATED",
+            "UPDATED",
+            "DELETED",
+            "PROCESSING"
+          ]
+        }
+      }
+    },
     "MergeJob": {
       "description": "The merge job. Has access to the job merge data.",
       "type": "object",
@@ -708,10 +721,6 @@
         "status"
       ],
       "properties": {
-        "resultFolderPath": {
-          "description": "The target folder path of result files",
-          "type": "string"
-        },
         "completionTime": {
           "format": "date-time",
           "description": "The completion date/time of this job in ISO 8601 format",
@@ -722,10 +731,7 @@
           "description": "The server generated job jobId. This jobId is checked against the jobId in the request path on every invocation",
           "type": "string"
         },
-        "resultContainerId": {
-          "description": "The target container id of result files",
-          "type": "string"
-        },
+        "settings": {"$ref": "#/definitions/MergeSettings"},
         "creationTime": {
           "format": "date-time",
           "description": "The creation date/time of this job in ISO 8601 format",
@@ -747,7 +753,10 @@
           "type": "array",
           "items": {"type": "string"}
         },
-        "mergeSettings": {"$ref": "#/definitions/MergeSettings"},
+        "resultStorageLocation": {
+          "description": "The storage location. (optional)",
+          "$ref": "#/definitions/StorageLocation"
+        },
         "statusMessage": {
           "description": "A status message, which can be informational, warning or error. A message here does not indicate an error perse",
           "readOnly": true,
@@ -768,25 +777,18 @@
         }
       }
     },
-    "OwnerInfo": {
-      "description": "Owner info",
+    "ResultStreamRequest": {
+      "description": "A request to download a specific result stream.",
       "type": "object",
+      "required": ["streamLocation"],
       "properties": {
-        "phone": {
-          "description": "The owner's phone number",
-          "type": "string"
+        "streamLocation": {
+          "description": "The stream location",
+          "$ref": "#/definitions/StreamLocation"
         },
-        "companyDepartment": {
-          "description": "The owner's company/department",
-          "type": "string"
-        },
-        "name": {
-          "description": "The owner's name",
-          "type": "string"
-        },
-        "email": {
-          "description": "The owner's email address",
-          "type": "string"
+        "outputSettings": {
+          "description": "The Output settings",
+          "$ref": "#/definitions/OutputSettings"
         }
       }
     },
@@ -796,7 +798,7 @@
       "required": [
         "dataSetId",
         "outputSettings",
-        "resultStreamLocation",
+        "resultStorageLocation",
         "templateId"
       ],
       "properties": {
@@ -824,20 +826,54 @@
           "type": "array",
           "items": {"type": "string"}
         },
+        "resultStorageLocation": {
+          "description": "The output location of the result files.",
+          "$ref": "#/definitions/StorageLocation"
+        },
         "templateVersion": {
           "format": "int32",
           "description": "Template version",
           "type": "integer"
-        },
-        "resultStreamLocation": {
-          "description": "The output location of the result files.",
-          "$ref": "#/definitions/StreamLocation"
         },
         "templateId": {
           "description": "Template id",
           "type": "string"
         },
         "outputSettings": {"$ref": "#/definitions/OutputSettings"}
+      }
+    },
+    "OwnerInfo": {
+      "description": "Owner info",
+      "type": "object",
+      "properties": {
+        "phone": {
+          "description": "The owner's phone number",
+          "type": "string"
+        },
+        "companyDepartment": {
+          "description": "The owner's company/department",
+          "type": "string"
+        },
+        "name": {
+          "description": "The owner's name",
+          "type": "string"
+        },
+        "email": {
+          "description": "The owner's email address",
+          "type": "string"
+        }
+      }
+    },
+    "StorageLocation": {
+      "description": "Storage Location",
+      "type": "object",
+      "properties": {
+        "folderPath": {"type": "string"},
+        "id": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "containerId": {"type": "string"}
       }
     },
     "MergeJobResponse": {
@@ -886,7 +922,7 @@
       "email": "dev@sphereon.com"
     },
     "description": "<b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<<\/b>\r\n\r\nThe flow is generally as follows:\r\n\r\n\r\n<b>Interactive testing: <\/b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store<\/a>",
-    "termsOfService": "https://sphereon.com",
+    "termsOfService": "https://docs.sphereon.com/api/blockchain-proof/0.1/html",
     "title": "Template-Processor",
     "version": "0.1"
   },
@@ -896,12 +932,12 @@
       "description": "All APIs combined"
     },
     {
-      "name": "Template",
-      "description": "Templates"
-    },
-    {
       "name": "DataSet",
       "description": "Dataset related APIs"
+    },
+    {
+      "name": "Template",
+      "description": "Template APIs"
     },
     {
       "name": "Job",
