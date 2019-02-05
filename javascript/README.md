@@ -120,39 +120,40 @@ api.createDataSet(payload, callback);
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://gw.api.cloud.sphereon.com*
+All URIs are relative to *https://gw.api.cloud.sphereon.com/template/processor/0.1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*TemplateProcessor.AllApi* | [**createDataSet**](docs/AllApi.md#createDataSet) | **POST** /template/processor/0.1/datasets | Store dataset
-*TemplateProcessor.AllApi* | [**createTemplateContext**](docs/AllApi.md#createTemplateContext) | **POST** /template/processor/0.1/templates | Create template context
-*TemplateProcessor.AllApi* | [**deleteDataSet**](docs/AllApi.md#deleteDataSet) | **DELETE** /template/processor/0.1/datasets/{dataSetId} | Delete a stored data set
-*TemplateProcessor.AllApi* | [**deleteJob**](docs/AllApi.md#deleteJob) | **DELETE** /template/processor/0.1/jobs/{jobId} | Delete a job manually
-*TemplateProcessor.AllApi* | [**deleteTemplateContext**](docs/AllApi.md#deleteTemplateContext) | **DELETE** /template/processor/0.1/templates/{templateId} | Delete template context
-*TemplateProcessor.AllApi* | [**getJob**](docs/AllApi.md#getJob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
-*TemplateProcessor.AllApi* | [**getJobs**](docs/AllApi.md#getJobs) | **GET** /template/processor/0.1/jobs | Get all jobs
-*TemplateProcessor.AllApi* | [**getResultStream**](docs/AllApi.md#getResultStream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
-*TemplateProcessor.AllApi* | [**getResultStreamsAsContainer**](docs/AllApi.md#getResultStreamsAsContainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
-*TemplateProcessor.AllApi* | [**getTemplateContext**](docs/AllApi.md#getTemplateContext) | **GET** /template/processor/0.1/templates/{templateId} | Get template context
-*TemplateProcessor.AllApi* | [**submitJob**](docs/AllApi.md#submitJob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
-*TemplateProcessor.AllApi* | [**updateTemplateContext**](docs/AllApi.md#updateTemplateContext) | **PUT** /template/processor/0.1/templates | Update template context
-*TemplateProcessor.AllApi* | [**uploadTemplateFile**](docs/AllApi.md#uploadTemplateFile) | **POST** /template/processor/0.1/templates/{templateId} | Upload template file
-*TemplateProcessor.DataSetApi* | [**createDataSet**](docs/DataSetApi.md#createDataSet) | **POST** /template/processor/0.1/datasets | Store dataset
-*TemplateProcessor.DataSetApi* | [**deleteDataSet**](docs/DataSetApi.md#deleteDataSet) | **DELETE** /template/processor/0.1/datasets/{dataSetId} | Delete a stored data set
-*TemplateProcessor.JobApi* | [**getJob**](docs/JobApi.md#getJob) | **GET** /template/processor/0.1/jobs/{jobId} | Job definition and state
-*TemplateProcessor.JobApi* | [**getJobs**](docs/JobApi.md#getJobs) | **GET** /template/processor/0.1/jobs | Get all jobs
-*TemplateProcessor.JobApi* | [**getResultStream**](docs/JobApi.md#getResultStream) | **PUT** /template/processor/0.1/jobs/{jobId}/result/stream | Get the result file
-*TemplateProcessor.JobApi* | [**getResultStreamsAsContainer**](docs/JobApi.md#getResultStreamsAsContainer) | **PUT** /template/processor/0.1/jobs/{jobId}/result/container | Get the result file
-*TemplateProcessor.JobApi* | [**submitJob**](docs/JobApi.md#submitJob) | **PUT** /template/processor/0.1/jobs | Submit merge job for processing
-*TemplateProcessor.TemplateApi* | [**createTemplateContext**](docs/TemplateApi.md#createTemplateContext) | **POST** /template/processor/0.1/templates | Create template context
-*TemplateProcessor.TemplateApi* | [**deleteTemplateContext**](docs/TemplateApi.md#deleteTemplateContext) | **DELETE** /template/processor/0.1/templates/{templateId} | Delete template context
-*TemplateProcessor.TemplateApi* | [**getTemplateContext**](docs/TemplateApi.md#getTemplateContext) | **GET** /template/processor/0.1/templates/{templateId} | Get template context
-*TemplateProcessor.TemplateApi* | [**updateTemplateContext**](docs/TemplateApi.md#updateTemplateContext) | **PUT** /template/processor/0.1/templates | Update template context
-*TemplateProcessor.TemplateApi* | [**uploadTemplateFile**](docs/TemplateApi.md#uploadTemplateFile) | **POST** /template/processor/0.1/templates/{templateId} | Upload template file
+*TemplateProcessor.AllApi* | [**createDataSet**](docs/AllApi.md#createDataSet) | **POST** /datasets | Store dataset
+*TemplateProcessor.AllApi* | [**createTemplateContext**](docs/AllApi.md#createTemplateContext) | **POST** /templates | Create template context
+*TemplateProcessor.AllApi* | [**deleteDataSet**](docs/AllApi.md#deleteDataSet) | **DELETE** /datasets/{dataSetId} | Delete a stored data set
+*TemplateProcessor.AllApi* | [**deleteJob**](docs/AllApi.md#deleteJob) | **DELETE** /jobs/{jobId} | Delete a job manually
+*TemplateProcessor.AllApi* | [**deleteTemplateContext**](docs/AllApi.md#deleteTemplateContext) | **DELETE** /templates/{templateId} | Delete template context
+*TemplateProcessor.AllApi* | [**getJob**](docs/AllApi.md#getJob) | **GET** /jobs/{jobId} | Job definition and state
+*TemplateProcessor.AllApi* | [**getJobs**](docs/AllApi.md#getJobs) | **GET** /jobs | Get all jobs
+*TemplateProcessor.AllApi* | [**getResultStream**](docs/AllApi.md#getResultStream) | **PUT** /jobs/{jobId}/result/stream | Get the result file
+*TemplateProcessor.AllApi* | [**getResultStreamsAsContainer**](docs/AllApi.md#getResultStreamsAsContainer) | **PUT** /jobs/{jobId}/result/container | Get the result file
+*TemplateProcessor.AllApi* | [**getTemplateContext**](docs/AllApi.md#getTemplateContext) | **GET** /templates/{templateId} | Get template context
+*TemplateProcessor.AllApi* | [**submitJob**](docs/AllApi.md#submitJob) | **PUT** /jobs | Submit merge job for processing
+*TemplateProcessor.AllApi* | [**updateTemplateContext**](docs/AllApi.md#updateTemplateContext) | **PUT** /templates | Update template context
+*TemplateProcessor.AllApi* | [**uploadTemplateFile**](docs/AllApi.md#uploadTemplateFile) | **POST** /templates/{templateId} | Upload template file
+*TemplateProcessor.DataSetApi* | [**createDataSet**](docs/DataSetApi.md#createDataSet) | **POST** /datasets | Store dataset
+*TemplateProcessor.DataSetApi* | [**deleteDataSet**](docs/DataSetApi.md#deleteDataSet) | **DELETE** /datasets/{dataSetId} | Delete a stored data set
+*TemplateProcessor.JobApi* | [**getJob**](docs/JobApi.md#getJob) | **GET** /jobs/{jobId} | Job definition and state
+*TemplateProcessor.JobApi* | [**getJobs**](docs/JobApi.md#getJobs) | **GET** /jobs | Get all jobs
+*TemplateProcessor.JobApi* | [**getResultStream**](docs/JobApi.md#getResultStream) | **PUT** /jobs/{jobId}/result/stream | Get the result file
+*TemplateProcessor.JobApi* | [**getResultStreamsAsContainer**](docs/JobApi.md#getResultStreamsAsContainer) | **PUT** /jobs/{jobId}/result/container | Get the result file
+*TemplateProcessor.JobApi* | [**submitJob**](docs/JobApi.md#submitJob) | **PUT** /jobs | Submit merge job for processing
+*TemplateProcessor.TemplateApi* | [**createTemplateContext**](docs/TemplateApi.md#createTemplateContext) | **POST** /templates | Create template context
+*TemplateProcessor.TemplateApi* | [**deleteTemplateContext**](docs/TemplateApi.md#deleteTemplateContext) | **DELETE** /templates/{templateId} | Delete template context
+*TemplateProcessor.TemplateApi* | [**getTemplateContext**](docs/TemplateApi.md#getTemplateContext) | **GET** /templates/{templateId} | Get template context
+*TemplateProcessor.TemplateApi* | [**updateTemplateContext**](docs/TemplateApi.md#updateTemplateContext) | **PUT** /templates | Update template context
+*TemplateProcessor.TemplateApi* | [**uploadTemplateFile**](docs/TemplateApi.md#uploadTemplateFile) | **POST** /templates/{templateId} | Upload template file
 
 
 ## Documentation for Models
 
+ - [TemplateProcessor.ClaimParameters](docs/ClaimParameters.md)
  - [TemplateProcessor.DataSetResponse](docs/DataSetResponse.md)
  - [TemplateProcessor.Error](docs/Error.md)
  - [TemplateProcessor.ErrorResponse](docs/ErrorResponse.md)

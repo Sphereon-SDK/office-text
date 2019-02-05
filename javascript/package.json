@@ -2,7 +2,7 @@
   "name": "template_processor",
   "version": "0.1",
   "description": "bThe_Template_Processor_API_can_generate_office_xml_and_json_documents_from_a_template_and_a_JSON_data_file__Supported_templates_are_MS_Office_files_and_freemarker_files_bThe_flow_is_generally_as_followsbInteractive_testing_bA_web_based_test_console_is_available_in_the_a_hrefhttpsstore_sphereon_comSphereon_API_Storea",
-  "license": "Unlicense",
+  "license": "Apache License Version 2.0",
   "main": "src/SphereonTemplateProcessor/index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --recursive"
