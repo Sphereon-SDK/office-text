@@ -81,7 +81,7 @@ Contact: dev@sphereon.com
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\Sphereon.SDK.TemplateProcessor\Sphereon.SDK.TemplateProcessor.csproj">
-          <Project>{0F9BCF2C-D135-4673-945D-26B12ED8FD21}</Project>
+          <Project>{D69606FB-2A3F-4363-A33C-4FAD5967BB66}</Project>
           <Name>Sphereon.SDK.TemplateProcessor</Name>
       </ProjectReference>
   </ItemGroup>

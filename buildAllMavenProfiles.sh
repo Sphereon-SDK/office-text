@@ -1,3 +1,4 @@
+#!/bin/sh
 mvn -Pjava8-jersey2 clean install
 mvn -Pjava8-okhttp-gson clean install
 mvn -Pjava8-retrofit2 clean install

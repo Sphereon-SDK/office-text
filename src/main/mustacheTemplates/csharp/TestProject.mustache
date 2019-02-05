@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Template-Processor
+{{#appName}}
+{{{appName}}}
 
-<b>The Template-Processor API can generate office, xml and json documents from a template and a JSON data file. Supported templates are MS Office files and freemarker files.<</b>    The flow is generally as follows:      <b>Interactive testing: </b>A web based test console is available in the <a href=\"https://store.sphereon.com\">Sphereon API Store</a>
+{{/appName}}
+{{#appDescription}}
+{{{appDescription}}}
 
-OpenAPI spec version: 0.1
-Contact: dev@sphereon.com
+{{/appDescription}}
+{{#version}}OpenAPI spec version: {{{version}}}{{/version}}
+{{#infoEmail}}Contact: {{{infoEmail}}}{{/infoEmail}}
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -14,9 +18,17 @@ Contact: dev@sphereon.com
     <ProjectGuid>{19F1DEBC-DE5E-4517-8062-F000CD499087}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sphereon.SDK.TemplateProcessor.Test</RootNamespace>
-    <AssemblyName>Sphereon.SDK.TemplateProcessor.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>{{testPackageName}}</RootNamespace>
+    <AssemblyName>{{testPackageName}}</AssemblyName>
+    {{^supportsUWP}}
+    <TargetFrameworkVersion>{{targetFramework}}</TargetFrameworkVersion>
+    {{/supportsUWP}}
+    {{#supportsUWP}}
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    {{/supportsUWP}}
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,22 +59,22 @@ Contact: dev@sphereon.com
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Newtonsoft.Json">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.10.0.3\lib\{{targetFrameworkNuget}}\Newtonsoft.Json.dll</HintPath>
+        <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.10.0.3\lib\{{targetFrameworkNuget}}\Newtonsoft.Json.dll</HintPath>
+        <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.10.0.3\lib\{{targetFrameworkNuget}}\Newtonsoft.Json.dll</HintPath>
+        <HintPath Condition="Exists('{{binRelativePath}}')">{{binRelativePath}}\Newtonsoft.Json.10.0.3\lib\{{targetFrameworkNuget}}\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharpSigned">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharpSigned.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\RestSharpSigned.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharpSigned.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\RestSharpSigned.105.1.0\lib\net45\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharpSigned.105.1.0\lib\{{targetFrameworkNuget}}\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('..\packages')">..\packages\RestSharpSigned.105.1.0\lib\{{targetFrameworkNuget}}\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharpSigned.105.1.0\lib\{{targetFrameworkNuget}}\RestSharp.dll</HintPath>
+        <HintPath Condition="Exists('{{binRelativePath}}')">{{binRelativePath}}\RestSharpSigned.105.1.0\lib\{{targetFrameworkNuget}}\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
         <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
         <HintPath Condition="Exists('..\packages')">..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
         <HintPath Condition="Exists('..\..\packages')">..\..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\NUnit.3.9.0\lib\nunit.framework.dll</HintPath>
+        <HintPath Condition="Exists('{{binRelativePath}}')">{{binRelativePath}}\NUnit.3.9.0\lib\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -74,9 +86,9 @@ Contact: dev@sphereon.com
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-      <ProjectReference Include="..\Sphereon.SDK.TemplateProcessor\Sphereon.SDK.TemplateProcessor.csproj">
-          <Project>{AADC8EF1-2461-4634-BC88-69AE7CD89B3E}</Project>
-          <Name>Sphereon.SDK.TemplateProcessor</Name>
+      <ProjectReference Include="..\{{packageName}}\{{packageName}}.csproj">
+          <Project>{{packageGuid}}</Project>
+          <Name>{{packageName}}</Name>
       </ProjectReference>
   </ItemGroup>
 </Project>
